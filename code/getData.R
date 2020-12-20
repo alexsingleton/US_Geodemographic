@@ -49,9 +49,9 @@ x<-foreach(i = 1:length(codes),.packages=c('purrr','dplyr','tidycensus')) %dopar
 }
 
 ##transform the list into two dfs one for estimates one for errors
-x2<-x %>%
+x<-x %>%
   reduce(left_join,by=c("GEOID","NAME")) 
-x3<-map(set_names(c("est","moe")),~select(x2,starts_with(.x),c("GEOID","NAME")))
+x<-map(purrr::set_names(c("est","moe")),~select(x,starts_with(.x),c("GEOID","NAME")))
 
 data<-x[["est"]]
 moe<-x[["moe"]]
@@ -73,7 +73,17 @@ getPrt<-function (.x, .y) {
 num<-paste0("est_",vars[vars$pct=="TRUE",]$code)
 denom<-paste0("est_",vars[vars$pct=="TRUE",]$denom)
 
-prt<-purrr::map2(.x=num,.y=denom,.f=getPrt) %>% as.data.frame() 
-names(prt)<-sub("est","prt",names(prt))
+prt<-purrr::map2(.x=num,.y=denom,.f=getPrt) %>% as.data.frame()
 
-data_prt<-data.frame(data,prt)
+#Change column names
+names(prt)<-str_replace_all(names(prt),"_","")
+names(prt)<-str_replace(names(prt),"est","PCT_ACS18_5yr_")
+
+#Append the non % variables
+non_pct_data <- data.frame(data[,c("GEOID",paste0("est_",nopct))])
+names(non_pct_data)<-str_replace_all(names(non_pct_data),"_","")
+names(non_pct_data)<-str_replace(names(non_pct_data),"est","ACS18_5yr_")
+
+Input_Data <-cbind(non_pct_data,prt) #Input Data
+
+
