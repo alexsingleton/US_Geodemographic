@@ -1,6 +1,6 @@
 # US Geodemographic Classification
 
-# Introduction / AIm
+# Introduction / Aim
 
 This repo presents the code used to build a new geodmeographic classification for the US, following previous work within this geographic [context](https://github.com/geoss/acs_demographic_clusters/).
 
