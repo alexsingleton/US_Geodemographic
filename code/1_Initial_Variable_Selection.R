@@ -21,8 +21,8 @@ library(summarytools)
 ################################################################################################
 # Universe of potential variables exploration
 #
-# This code pulls a list of variables that might be considered in a new geodemographic within the context of our
-# previous work on the US (https://doi.org/10.1080/00045608.2015.1052335)
+# This code pulls a list of variables that might be considered in a new geodemographic within the
+# context of our previous work on the US (https://doi.org/10.1080/00045608.2015.1052335)
 #################################################################################################
 
 # Create full ACS Table List and Initial Variables
