@@ -16,6 +16,11 @@ library(reshape2)
 library(ggraph)
 library(viridis)
 library(summarytools)
+library(cluster)
+library(janitor)
+library(caret)
+library(e1071)
+
 
 
 ################################################################################################
@@ -27,7 +32,7 @@ library(summarytools)
 
 
 ## A set of new potential candidate variables were manually identified from the list of potential variables
-vars_new <-  read_excel("data/acs_variables_initial_1.2.xlsx")[-1] # WE SHOULD PROBABLY MAKE THIS A CSV BEFORE RELEASE
+vars_new <-  read_excel("data/acs_variables_initial_1.3.xlsx")[-1] # WE SHOULD PROBABLY MAKE THIS A CSV BEFORE RELEASE
 
 ## Append a new TRUE / FALSE variable to indicate if a percentage
 non_pct_ <- c("C18131","B19083","B25064","B25018","B25076","B25077","B25078","B25088","B25105") #Identify variables that aren't PCT
@@ -51,7 +56,7 @@ codes <- unique(c(denom,nopct,numer))#Unique is needed to remove the denominator
 
 # Set the Census API key and retrieve country codes
 census_api_key("28623dc12367621593ec9f56deeb0c495644e8f0",overwrite = TRUE ,install = TRUE)
-readRenviron("~/.Renviron")
+#readRenviron("~/.Renviron")
 us <- unique(fips_codes$state)[1:51]
 
 # Setup parallel processing
@@ -63,7 +68,7 @@ registerDoParallel(cl)
 # Pull down ACS data (estimates & margins of error)
 x<-foreach(i = 1:length(codes),.packages=c('purrr','dplyr','tidycensus')) %dopar%{
   df <- map_df(us, function(x) {
-    get_acs(geography = "tract", variables = codes[i], 
+    get_acs(geography = "block group", variables = codes[i], 
             state = x, year = 2019,geometry = FALSE)
   })
   error <- paste0("moe_",codes[i])
