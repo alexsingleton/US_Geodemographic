@@ -32,7 +32,7 @@ library(e1071)
 
 
 ## A set of new potential candidate variables were manually identified from the list of potential variables
-vars_new <-  read_excel("data/acs_variables_initial_1.3.xlsx")[-1] # WE SHOULD PROBABLY MAKE THIS A CSV BEFORE RELEASE
+vars_new <-  read_excel("data/acs_variables_initial_1.2.xlsx")[-1] # WE SHOULD PROBABLY MAKE THIS A CSV BEFORE RELEASE
 
 ## Append a new TRUE / FALSE variable to indicate if a percentage
 non_pct_ <- c("C18131","B19083","B25064","B25018","B25076","B25077","B25078","B25088","B25105") #Identify variables that aren't PCT
@@ -64,20 +64,47 @@ c<- detectCores() - 1
 cl <- makeCluster(c)
 registerDoParallel(cl)
 
-
-# Pull down ACS data (estimates & margins of error)
-x<-foreach(i = 1:length(codes),.packages=c('purrr','dplyr','tidycensus')) %dopar%{
-  df <- map_df(us, function(x) {
-    get_acs(geography = "block group", variables = codes[i], 
-            state = x, year = 2019,geometry = FALSE)
-  })
-  error <- paste0("moe_",codes[i])
-  est <- paste0("est_",codes[i])
-  df <-df %>%
+####Function to call the api and save a data backup
+map_function<-function(.x) {
+  d<-get_acs(geography = "tract", variables = codes[i], 
+             state = .x, year = 2019,geometry = FALSE)
+  d <-d %>%
     select(-variable) %>%
     rename(!! est := estimate,
            !! error := moe)
+  saveRDS(d,paste0("data/storage_tmp/",codes[i],"-",.x,".rds"))
+  return(d)
 }
+
+# Pull down ACS data (estimates & margins of error)
+x<-foreach(i = states_count[states_count$check=="NC",]$id,.packages=c('purrr','dplyr','tidycensus')) %dopar%{
+  error <- paste0("moe_",codes[i])
+  est <- paste0("est_",codes[i])
+  if(i %in% missing_states$id){
+    us<-na.omit(us[missing_states[missing_states$id==i,]$V1+1:length(us)])
+  }
+  df<-map_df(.x=us,.f=map_function) 
+}
+#############################
+###### RECOVERY CODE ########
+#############################
+
+files<-map(.x=codes,function(x){list.files("data/storage_tmp",full.names = T, pattern = x)})
+states_count<-as.data.frame(do.call("rbind",map(files,length)))
+states_count$id<-seq(1:nrow(states_count))
+states_count$check<-ifelse(states_count$V1==51,"C","NC")
+pulled_var<-states_count[states_count$check=="C" | (states_count$check=="NC" & states_count$V1>0),]$id #this is the number of pulled variables
+missing_states<-states_count[states_count$check=="NC" & states_count$V1>0,1:2] #this is the number of states pulled for each variable
+
+recover<-function(x){
+  n=length(x[1])
+  if (n>=1){
+    d<-do.call("rbind",map(x,readRDS))
+    return(d)
+  }else{stop()}
+}
+
+x <- map(files[1:length(pulled_var)],function(x){do.call("rbind",lapply(x,readRDS))})
 
 
 # Transform the list into estimate and margin of error data frames
