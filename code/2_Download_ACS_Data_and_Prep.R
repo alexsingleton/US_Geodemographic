@@ -32,7 +32,7 @@ library(e1071)
 
 
 ## A set of new potential candidate variables were manually identified from the list of potential variables
-vars_new <-  read_excel("data/acs_variables_initial_1.3.xlsx")[-1] # WE SHOULD PROBABLY MAKE THIS A CSV BEFORE RELEASE
+vars_new <-  read_excel("data/acs_variables_initial_1.4.xlsx")[-1] # WE SHOULD PROBABLY MAKE THIS A CSV BEFORE RELEASE
 
 ## Append a new TRUE / FALSE variable to indicate if a percentage
 non_pct_ <- c("C18131","B19083","B25064","B25018","B25076","B25077","B25078","B25088","B25105") #Identify variables that aren't PCT
@@ -64,7 +64,7 @@ c<- detectCores() - 1
 cl <- makeCluster(c)
 registerDoParallel(cl)
 
-
+ptm <- proc.time()
 # Pull down ACS data (estimates & margins of error)
 x<-foreach(i = 1:length(codes),.packages=c('purrr','dplyr','tidycensus')) %dopar%{
   df <- map_df(us, function(x) {
@@ -78,7 +78,7 @@ x<-foreach(i = 1:length(codes),.packages=c('purrr','dplyr','tidycensus')) %dopar
     rename(!! est := estimate,
            !! error := moe)
 }
-
+proc.time() - ptm
 
 # Transform the list into estimate and margin of error data frames
 
@@ -95,22 +95,22 @@ saveRDS(data,"./data/data.rds")
 
 view(dfSummary(data), file = "Summary_Inputs.html")
 
-# miss <- data %>%
-#   select(everything()) %>%  
-#   summarise_all(funs(sum(is.na(.))/ 23212 *100) )
-# 
-# 
-# miss <- as.data.frame(t(miss))
-# miss$ID <- row.names(miss)
-# 
-# 
-# nnn <- vars_new %>%
-#   filter(`New Variables` == 1) %>%
-#  select(UniqueID) %>%
-#   pull()
-# 
-# nnn_miss <- miss %>%
-#   filter(ID %in% paste0("est_",nnn))
+miss <- data %>%
+  select(everything()) %>%
+  summarise_all(funs(sum(is.na(.))/ 23212 *100) )
+
+
+miss <- as.data.frame(t(miss))
+miss$ID <- row.names(miss)
+
+
+nnn <- vars_new %>%
+  filter(`New Variables` == 1) %>%
+ select(UniqueID) %>%
+  pull()
+
+nnn_miss <- miss %>%
+  filter(ID %in% paste0("est_",nnn))
 
 
 ################
