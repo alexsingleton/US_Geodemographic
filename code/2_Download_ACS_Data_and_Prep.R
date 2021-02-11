@@ -93,7 +93,24 @@ moe<-x[["moe"]]
 saveRDS(moe,"./data/moe.rds")
 saveRDS(data,"./data/data.rds")
 
+view(dfSummary(data), file = "Summary_Inputs.html")
 
+# miss <- data %>%
+#   select(everything()) %>%  
+#   summarise_all(funs(sum(is.na(.))/ 23212 *100) )
+# 
+# 
+# miss <- as.data.frame(t(miss))
+# miss$ID <- row.names(miss)
+# 
+# 
+# nnn <- vars_new %>%
+#   filter(`New Variables` == 1) %>%
+#  select(UniqueID) %>%
+#   pull()
+# 
+# nnn_miss <- miss %>%
+#   filter(ID %in% paste0("est_",nnn))
 
 
 ################
