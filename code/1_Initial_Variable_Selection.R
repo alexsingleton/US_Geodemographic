@@ -16,6 +16,11 @@ library(reshape2)
 library(ggraph)
 library(viridis)
 library(summarytools)
+library(cluster)
+library(janitor)
+library(caret)
+library(e1071)
+
 
 
 ################################################################################################
@@ -57,6 +62,8 @@ vars %<>%
 
 
 # Add a variable to identify if a table supplied a variable for the original classification
+original_tables <- unique(vars$table)[- c(1:3)] # tables used in the original classification
+
 acs_tables %<>%
   mutate(Orig_Var = ifelse(`Table ID` %in% original_tables, 1, 0))
 
@@ -65,11 +72,28 @@ acs_tables %<>%
 
 # Expand the universe of tables to examine - these were additional tables not used in the original classification; and also some replacements for tables no longer available
 
-original_tables <- unique(vars$table)[- c(1:3)] # tables used in the original classification
-all_tables <- c(original_tables,c("C16001","B04007","B05001","B05002","B08006","B08007","B08008","B08009","B08011","B08013","B08015","B11017","B16009","C17002",
-                                  "B18101","B18106","B18107","C18108","C18131","B19080","B19081","B19082","B25001","B25004","B25017","B25018","B25036",
-                                  "B25041","B25056","B25061","B25068","B25070","B25076","B25077","B25078","B25085","B25087","B25088","B25104","B25105",
-                                  "B26001","B26103","B26202","B26203","B27001","B27011","C27013","C27014","B28001","B28002","B28005","B28010","B28011"))
+all_tables <- c(original_tables,c("B04007","B08007","B08008","B08009","B08013","B08015","B11017","B16009","C17002","B03002","B03003","B08301","B08302","B23024","B16004","C24030",
+                                  "C18131","B19080","B19081","B19082","B25001","B25004","B25017","B25018",
+                                  "B25041","B25056","B25068","B25070","B25076","B25077","B25078","B25085","B25087","B25088","B25104","B25105",
+                                  "B26001","B27011","C27013","C27014","B28001","B28002","B28005","B28010","B28011",
+                                  "B15003","B12001","B05012","B08302",
+                                  "C24040","C02003","B22010","B09019"))
+#1 year only - B07001 B07003
+
+#Remove tables that have no block group level 
+
+#### (https://www.census.gov/programs-surveys/acs/technical-documentation/summary-file-documentation.html)
+GET("https://www2.census.gov/programs-surveys/acs/summary_file/2019/documentation/tech_docs/ACS_2019_SF_5YR_Appendices.xlsx", write_disk(tf <- tempfile(fileext = ".xlsx")))
+no_block_group <- read_excel(tf)
+
+no_block_group %<>%
+  filter(`Geography Restrictions` == "No Blockgroups") %>%
+  select(`Table Number`) %>%
+  pull()
+
+
+all_tables <- setdiff(all_tables,no_block_group)
+
 
 
 # Download selected table variables and descriptions (https://www.census.gov/programs-surveys/acs/technical-documentation/table-shells.html)

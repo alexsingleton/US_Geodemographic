@@ -16,6 +16,11 @@ library(reshape2)
 library(ggraph)
 library(viridis)
 library(summarytools)
+library(cluster)
+library(janitor)
+library(caret)
+library(e1071)
+
 
 
 All_data <- readRDS("./data/All_data_1.2.rds")
