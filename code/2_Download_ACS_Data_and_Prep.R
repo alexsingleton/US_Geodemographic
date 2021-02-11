@@ -32,7 +32,7 @@ library(e1071)
 
 
 ## A set of new potential candidate variables were manually identified from the list of potential variables
-vars_new <-  read_excel("data/acs_variables_initial_1.2.xlsx")[-1] # WE SHOULD PROBABLY MAKE THIS A CSV BEFORE RELEASE
+vars_new <-  read_excel("data/acs_variables_initial_1.4.xlsx")[-1] # WE SHOULD PROBABLY MAKE THIS A CSV BEFORE RELEASE
 
 ## Append a new TRUE / FALSE variable to indicate if a percentage
 non_pct_ <- c("C18131","B19083","B25064","B25018","B25076","B25077","B25078","B25088","B25105") #Identify variables that aren't PCT
@@ -66,7 +66,7 @@ registerDoParallel(cl)
 
 ####Function to call the api and save a data backup
 map_function<-function(.x) {
-  d<-get_acs(geography = "tract", variables = codes[i], 
+  d<-get_acs(geography = "block group", variables = codes[i], 
              state = .x, year = 2019,geometry = FALSE)
   d <-d %>%
     select(-variable) %>%
