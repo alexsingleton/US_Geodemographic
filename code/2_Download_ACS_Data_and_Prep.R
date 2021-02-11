@@ -56,7 +56,7 @@ codes <- unique(c(denom,nopct,numer))#Unique is needed to remove the denominator
 
 # Set the Census API key and retrieve country codes
 census_api_key("28623dc12367621593ec9f56deeb0c495644e8f0",overwrite = TRUE ,install = TRUE)
-#readRenviron("~/.Renviron")
+readRenviron("~/.Renviron")
 us <- unique(fips_codes$state)[1:51]
 
 # Setup parallel processing
@@ -66,18 +66,59 @@ registerDoParallel(cl)
 
 ptm <- proc.time()
 # Pull down ACS data (estimates & margins of error)
-x<-foreach(i = 1:length(codes),.packages=c('purrr','dplyr','tidycensus')) %dopar%{
-  df <- map_df(us, function(x) {
-    get_acs(geography = "block group", variables = codes[i], 
-            state = x, year = 2019,geometry = FALSE)
-  })
-  error <- paste0("moe_",codes[i])
-  est <- paste0("est_",codes[i])
-  df <-df %>%
+
+####Function to call the api and save a data backup
+map_function<-function(.x) {
+  d<-get_acs(geography = "block group", variables = codes[i], 
+             state = .x, year = 2019,geometry = FALSE)
+  d <-d %>%
     select(-variable) %>%
     rename(!! est := estimate,
            !! error := moe)
+  saveRDS(d,paste0("data/storage_tmp/",codes[i],"-",.x,".rds"))
+  return(d)
 }
+
+#####Loop through states and variables
+
+foreach(i = 1:length(codes),.packages=c('purrr','dplyr','tidycensus')) %dopar%{
+  error <- paste0("moe_",codes[i])
+  est <- paste0("est_",codes[i])
+  df<-map_df(.x=us,.f=map_function) 
+}
+######if everything went smoothly run this, if not go to the recovery code.
+files<-map(.x=codes,function(x){list.files("data/storage_tmp",full.names = T, pattern = x)})
+x<-map(files,function(x){do.call("rbind",lapply(x,readRDS))})
+
+#############################
+###### RECOVERY CODE ########
+#############################
+######Recover the work if the api have been disconnected and restart from where it stopped
+
+files<-map(.x=codes,function(x){list.files("data/storage_tmp",full.names = T, pattern = x)})
+states_count<-as.data.frame(do.call("rbind",map(files,length)))
+states_count$id<-seq(1:nrow(states_count))
+states_count$check<-ifelse(states_count$V1==51,"C","NC")
+pulled_var<-states_count[states_count$check=="C" | (states_count$check=="NC" & states_count$V1>0),]$id #this is the number of pulled variables
+missing_states<-states_count[states_count$check=="NC" & states_count$V1>0,1:2] #this is the number of states pulled for each variable
+
+foreach(i = states_count[states_count$check=="NC",]$id,.packages=c('purrr','dplyr','tidycensus')) %dopar%{
+  error <- paste0("moe_",codes[i])
+  est <- paste0("est_",codes[i])
+  if(i %in% missing_states$id){
+   us<-na.omit(us[missing_states[missing_states$id==i,]$V1+1:length(us)])
+  }
+  df<-map_df(.x=us,.f=map_function) 
+}
+
+files<-map(.x=codes,function(x){list.files("data/storage_tmp",full.names = T, pattern = x)})
+x <- map(files[1:length(pulled_var)],function(x){do.call("rbind",lapply(x,readRDS))})
+
+
+#############################
+#### END RECOVERY CODE ######
+#############################
+
 proc.time() - ptm
 
 # Transform the list into estimate and margin of error data frames
