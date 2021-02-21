@@ -1,11 +1,13 @@
 # Load Packages
 library(readr)
 library(tidycensus)
+library(tigris)
 library(purrr)
 library(foreach)
 library(doParallel)
 library(dplyr)
 library(tidyverse)
+library(tidygraph)
 library(magrittr)
 library(sf)
 library(readxl)
@@ -56,6 +58,7 @@ codes <- unique(c(denom,nopct,numer))#Unique is needed to remove the denominator
 
 # Set the Census API key and retrieve country codes
 census_api_key("28623dc12367621593ec9f56deeb0c495644e8f0",overwrite = TRUE ,install = TRUE)
+
 readRenviron("~/.Renviron")
 us <- unique(fips_codes$state)[1:51]
 
@@ -64,104 +67,40 @@ c<- detectCores() - 1
 cl <- makeCluster(c)
 registerDoParallel(cl)
 
-ptm <- proc.time()
-# Pull down ACS data (estimates & margins of error)
 
-####Function to call the api and save a data backup
-map_function<-function(.x) {
-  d<-get_acs(geography = "block group", variables = codes[i], 
-             state = .x, year = 2019,geometry = FALSE)
-  d <-d %>%
-    select(-variable) %>%
-    rename(!! est := estimate,
-           !! error := moe)
-  saveRDS(d,paste0("data/storage_tmp/",codes[i],"-",.x,".rds"))
-  return(d)
+
+ptm <- proc.time() # ~3 hours
+foreach(i = 1:length(us),.packages=c('purrr','dplyr','tidycensus')) %dopar%{
+  
+  d<-get_acs(geography = "block group", variables = codes, 
+             state = us[i], year = 2019,geometry = FALSE)
+  
+  saveRDS(d,paste0("data/storage_tmp/",us[i],".rds"))
+  rm(d)
+  
 }
-
-#####Loop through states and variables
-
-foreach(i = 1:length(codes),.packages=c('purrr','dplyr','tidycensus')) %dopar%{
-  error <- paste0("moe_",codes[i])
-  est <- paste0("est_",codes[i])
-  df<-map_df(.x=us,.f=map_function) 
-}
-######if everything went smoothly run this, if not go to the recovery code.
-files<-map(.x=codes,function(x){list.files("data/storage_tmp",full.names = T, pattern = x)})
-x<-map(files,function(x){do.call("rbind",lapply(x,readRDS))})
-
-#############################
-###### RECOVERY CODE ########
-#############################
-######Recover the work if the api have been disconnected and restart from where it stopped
-
-files<-map(.x=codes,function(x){list.files("data/storage_tmp",full.names = T, pattern = x)})
-states_count<-as.data.frame(do.call("rbind",map(files,length)))
-states_count$id<-seq(1:nrow(states_count))
-states_count$check<-ifelse(states_count$V1==51,"C","NC")
-pulled_var<-states_count[states_count$check=="C" | (states_count$check=="NC" & states_count$V1>0),]$id #this is the number of pulled variables
-missing_states<-states_count[states_count$check=="NC" & states_count$V1>0,1:2] #this is the number of states pulled for each variable
-
-foreach(i = states_count[states_count$check=="NC",]$id,.packages=c('purrr','dplyr','tidycensus')) %dopar%{
-  error <- paste0("moe_",codes[i])
-  est <- paste0("est_",codes[i])
-  if(i %in% missing_states$id){
-   us<-na.omit(us[missing_states[missing_states$id==i,]$V1+1:length(us)])
-  }
-  df<-map_df(.x=us,.f=map_function) 
-}
-
-files<-map(.x=codes,function(x){list.files("data/storage_tmp",full.names = T, pattern = x)})
-x <- map(files[1:length(pulled_var)],function(x){do.call("rbind",lapply(x,readRDS))})
-
-
-#############################
-#### END RECOVERY CODE ######
-#############################
-
 proc.time() - ptm
 
-# Transform the list into estimate and margin of error data frames
 
-x<-x %>%
-  reduce(left_join,by=c("GEOID","NAME")) 
-x<-map(purrr::set_names(c("est","moe")),~select(x,starts_with(.x),c("GEOID","NAME")))
-
-data<-x[["est"]]
-moe<-x[["moe"]]
-
-# Backup ACS data
-saveRDS(moe,"./data/moe.rds")
-saveRDS(data,"./data/data.rds")
-
-view(dfSummary(data), file = "Summary_Inputs.html")
-
-miss <- data %>%
-  select(everything()) %>%
-  summarise_all(funs(sum(is.na(.))/ 23212 *100) )
+# Combine Data
+ptm <- proc.time()
+DF <- list.files(path = "./data/storage_tmp/", pattern = ".rds", full.names = TRUE) %>%
+  map_dfr(readRDS)
+proc.time() - ptm
 
 
-miss <- as.data.frame(t(miss))
-miss$ID <- row.names(miss)
+DF %<>%
+  select(-NAME,-moe) %>%
+  pivot_wider(names_from = variable,values_from = estimate)
 
+saveRDS(DF,"./data/data.rds")
 
-nnn <- vars_new %>%
-  filter(`New Variables` == 1) %>%
- select(UniqueID) %>%
-  pull()
-
-nnn_miss <- miss %>%
-  filter(ID %in% paste0("est_",nnn))
 
 
 ################
 # Calculate Rates
 ################
 
-# Group Quarters (B26001_001) - A manual calculation is needed as denominator within a separate table
-GQ <- data %>%
-  mutate(Group_Quarters = (est_B26001_001 / est_B01001_001) * 100) %>%
-  select(GEOID, Group_Quarters)
 
 # Variables that need aggregation within a table - this requires summing some variables and replacing them within the variable numerator / denominator lookup
 
@@ -171,16 +110,17 @@ ag_vars <- vars_new %>%
 
 ag_vars <- split(ag_vars,ag_vars$MEASURE)
 
-ag_vars_out <- data %>%
+ag_vars_out <- DF %>%
   select(GEOID)
+
 
 for (i in 1:length(ag_vars)) {
   
-tmp <- data %>%
-  select(paste0("est_",ag_vars[[i]]$UniqueID)) %>%
+tmp <- DF %>%
+  select(paste0("",ag_vars[[i]]$UniqueID)) %>%
   mutate(sum = rowSums(.)) %>%
   select(sum) %>%
-  rename(!!paste0("est_",unique(ag_vars[[i]]$MEASURE)) := sum)
+  rename(!!paste0("",unique(ag_vars[[i]]$MEASURE)) := sum)
 
 ag_vars_out <- cbind(ag_vars_out,tmp)
   
@@ -205,45 +145,41 @@ vars_new %<>%
 
 #Append the aggregated variables onto Data
 
-data %<>%
+DF %<>%
   left_join(ag_vars_out,by = "GEOID")
 
 
 # Calculate rates
 
 getPrt<-function (.x, .y) {
-  numer<-data[,.x]
-  denom<-data[,.y]
+  numer<-DF[,.x]
+  denom<-DF[,.y]
   prt<-(numer/denom) * 100
   return(prt)
 }
 
 
 # Setup numerator and denominator lists & calculate rates
-numer <-paste0("est_",vars_new[((vars_new$pct==TRUE) & (!is.na(vars_new$CONCEPT))),]$UniqueID) # Numerators
-denom<-paste0("est_",vars_new[((vars_new$pct==TRUE) & (!is.na(vars_new$CONCEPT))),]$denom) # Denominators
+numer <-paste0("",vars_new[((vars_new$pct==TRUE) & (!is.na(vars_new$CONCEPT))),]$UniqueID) # Numerators
+denom<-paste0("",vars_new[((vars_new$pct==TRUE) & (!is.na(vars_new$CONCEPT))),]$denom) # Denominators
 
-
-# Remove qroup quarters from the lists
-numer <- numer[numer != "est_B26001_001"]
-denom <- denom[denom != "est_B26001_001"]
 
 # Calculate rates
 prt<-purrr::map2(.x=numer,.y=denom,.f=getPrt) %>% as.data.frame()
 
 # Append the non % / rate variables
-non_pct_data <- data.frame(data[,paste0("est_",nopct)])
+non_pct_data <- data.frame(DF[,paste0("",nopct)])
 
 All_data <- prt %>%
   bind_cols(non_pct_data)
 
 #Rename Variables & add ID
-names(All_data) <- vars_new$MEASURE[match(names(All_data), paste0("est_",vars_new$UniqueID))]
+names(All_data) <- vars_new$MEASURE[match(names(All_data), paste0("",vars_new$UniqueID))]
 
 All_data  %<>%
-  bind_cols(data[,"GEOID"])
+  bind_cols(DF[,"GEOID"])
 
 # Save the measures and description file
-saveRDS(All_data,"./data/All_data_1.2.rds")
+saveRDS(All_data,"./data/All_data_1.4.rds")
 saveRDS(vars_new,"./data/vars_new.rds")
 
