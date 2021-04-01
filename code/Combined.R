@@ -9,8 +9,9 @@ library(httr)
 library(corrr)
 library(tidygraph)
 library(ggraph) #install.packages("ggraph")
-
-
+library(car) #install.packages("car")
+library(h2o) #install.packages("h2o")
+library(cluster)
 
 # Geographic Data Supression (https://www.census.gov/programs-surveys/acs/technical-documentation/data-suppression.html)
 #GET("http://www2.census.gov/programs-surveys/acs/tech_docs/data_suppression/geographic_restrictions.xlsx", write_disk(tf <- tempfile(fileext = ".xlsx")))
@@ -149,7 +150,7 @@ write_csv(select_variables,"./data/BG_Variables.csv") # This is used to manually
 # Calculate Merges and Final % File
 ######################################
 
-vars_new <- read_excel("Variables_to_Include.xlsx") # Read variable list (manually edited - BG_Variables.csv)
+vars_new <- read_excel("Variables_to_Include_1.4.xlsx") # Read variable list (manually edited - BG_Variables.csv)
 
 
 # Variables identified for aggregation - this requires summing some variables and replacing them within the variable numerator / denominator lookup
@@ -193,6 +194,7 @@ vars_new %<>%
 
 
 # Append the aggregated variables onto ACS raw data table
+DF <- as_tibble(BG_ACS)
 DF %<>%
   left_join(ag_vars_out,by = "GEOID")
 
@@ -201,17 +203,23 @@ DF %<>%
 numer <- vars_new %>% filter(Non_PCT == FALSE) %>% select(name) %>% pull()
 denom <- vars_new %>% filter(Non_PCT == FALSE) %>% select(denominator) %>% pull()
 
-
+getPrt<-function (.x, .y) {
+  numer<-DF[,.x]
+  denom<-DF[,.y]
+  prt<-(numer/denom) * 100
+  return(prt)
+}
 
 # Calculate rates
 prt<-purrr::map2(.x=numer,.y=denom,.f=getPrt) %>% as.data.frame()
 colnames(prt) <- select_variables[select_variables$name %in% colnames(prt),"V_name"] %>% pull()
 
+prt %<>% replace(is.na(.), 0)
 
+# Save the measures and description file
+saveRDS(prt,"./data/BG_1.4_Pct.rds")
 
-
-
-
+saveRDS(vars_new,"./data/Variables_to_Include_1.4.rds")
 
 
 ################################################################################################
@@ -246,8 +254,11 @@ graph_corr <- g %>%
   as_tbl_graph()
 
 # Append node attribute measures
+vars_new %<>%
+  mutate(V_name = if_else(is.na(V_name),name,V_name))
+
 graph_corr %<>%
-  left_join(vars_new, by=c("name" = "V_name")) 
+  left_join(vars_new, by=c("name" = "V_name"))
 
 # Fix level Order
 graph_corr %<>% 
@@ -265,5 +276,94 @@ graph_corr %>%
 
 
 
+################################################################################################
+# Clustering
+#
+
+#################################################################################################
+
+prt <- readRDS("./data/BG_1.4_Pct.rds")
+vars_new <- readRDS("./data/Variables_to_Include_1.4.rds")
+v_used <- vars_new %>% filter(Keep_Variables == 1) %>% select(V_name) %>% pull() # select proposed used variables
+
+
+cluster_variables <- prt %>%
+  select(v_used) %>%
+  mutate_if(is.numeric, logit) %>%
+  bind_cols(select(DF,"GEOID"))
+
+
+
+#view(dfSummary(cluster_variables), file = "cluster_variables_Summary_Inputs.html")
+
+
+
+h2o.init(max_mem_size="50G")
+h2o.init()
+cluster_variables_h20 <- as.h2o(cluster_variables)
+
+# H2O test
+
+ptm <- proc.time()
+results <- h2o.kmeans(training_frame = cluster_variables_h20, k = 250, x = v_used, init = "Random",max_iterations=1,standardize = FALSE)
+wss <- h2o.tot_withinss(results)
+proc.time() - ptm
+
+
+ptm <- proc.time()
+
+for(i in 1:1000) {
+  
+  results_run <- h2o.kmeans(training_frame = cluster_variables_h20, k = 250, x = v_used, init = "Random",max_iterations=1000,standardize = FALSE)
+  wss_run <- h2o.tot_withinss(results_run)
+  
+  if(wss_run < wss) {
+    
+    wss <- wss_run
+    results <- results_run
+    
+  }
+  print(i)
+}
+
+proc.time() - ptm
+
+saveRDS(results,"./data/final_k250_Block_Group.rds")
+
+
+
+clusters <- as_tibble(h2o.predict(results,cluster_variables_h20))
+
+usa.bg.cl <- tibble(GEOID= cluster_variables$GEOID,cluster=clusters$predict)
+
+
+
+
+
+######################
+# Explore break points
+######################
+
+# Create a distance matrix for cluster centroids.
+#diss.ctr <- dist(test$centers)
+
+diss.ctr <- dist(data.frame(h2o.centers(results)))
+
+# Calculate Wards
+wards.ctr <-hclust(diss.ctr, method="ward.D")
+
+# Silhouette to identify break points
+
+sil <- NA  #hold fit statistics in a data.frame
+for (i in 2:249){
+  sil[i] <-  summary(silhouette(cutree(wards.ctr,k=i), diss.ctr))$avg.width
+}
+sil <- data.frame(sil=sil, k=1:249)[-1,]
+
+#Plot Silhouette
+ggplot(data=sil, aes(x=log(k), y=sil, label=k)) +geom_line() + geom_vline(xintercept=log(c(7,22,56)), lty=3, lwd=.5)
+
+#Create cut points in the tree hierarchy 
+ward.cuts <- data.frame(cluster=1:250, cutree(wards.ctr,k=c(7,27,65)))
 
 
