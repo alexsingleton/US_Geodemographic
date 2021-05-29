@@ -12,6 +12,10 @@ library(ggraph) #install.packages("ggraph")
 library(car) #install.packages("car")
 library(h2o) #install.packages("h2o")
 library(cluster)
+library("janitor") # install.packages("janitor")
+library(sf)
+library(magrittr)
+library(caret)
 
 # Geographic Data Supression (https://www.census.gov/programs-surveys/acs/technical-documentation/data-suppression.html)
 #GET("http://www2.census.gov/programs-surveys/acs/tech_docs/data_suppression/geographic_restrictions.xlsx", write_disk(tf <- tempfile(fileext = ".xlsx")))
@@ -99,6 +103,9 @@ BG_ACS <- read_acs5year(
   summary_level = "block group"
 )
 
+
+saveRDS(BG_ACS,"./data/BG_ACS.rds")
+
 ############################################################################
 # The next stage creates % scores for all variables and examines distribution
 ############################################################################
@@ -150,7 +157,9 @@ write_csv(select_variables,"./data/BG_Variables.csv") # This is used to manually
 # Calculate Merges and Final % File
 ######################################
 
-vars_new <- read_excel("Variables_to_Include_1.4.xlsx") # Read variable list (manually edited - BG_Variables.csv)
+BG_ACS <- readRDS("./data/BG_ACS.rds")
+
+vars_new <- read_excel("./data/Variables_to_Include_1.5.xlsx") # Read variable list (manually edited - BG_Variables.csv)
 
 
 # Variables identified for aggregation - this requires summing some variables and replacing them within the variable numerator / denominator lookup
@@ -160,12 +169,12 @@ ag_vars <- vars_new %>%
 
 ag_vars <- split(ag_vars,ag_vars$Alt_Name) # Split into a list
 
-ag_vars_out <- DF %>% #Create a table of GEOID
+ag_vars_out <- BG_ACS %>% #Create a table of GEOID
   select(GEOID)
 
 # Calculates the merged variables and appends to GEOID table
 for (i in 1:length(ag_vars)) {
-  tmp <-  DF %>%
+  tmp <-  BG_ACS %>%
     select(paste0("",ag_vars[[i]]$name)) %>%
     mutate(sum = rowSums(.)) %>%
     select(sum) %>%
@@ -187,7 +196,8 @@ ag_vars %<>%
   select(c(Alt_Name,denominator))%>%
   distinct() %>%
   rename(name = Alt_Name) %>%
-  mutate(Non_PCT = FALSE)
+  mutate(Non_PCT = FALSE) %>%
+  mutate(V_name = name)
 
 vars_new %<>%
   bind_rows(ag_vars)
@@ -203,23 +213,48 @@ DF %<>%
 numer <- vars_new %>% filter(Non_PCT == FALSE) %>% select(name) %>% pull()
 denom <- vars_new %>% filter(Non_PCT == FALSE) %>% select(denominator) %>% pull()
 
+
+
 getPrt<-function (.x, .y) {
   numer<-DF[,.x]
   denom<-DF[,.y]
   prt<-(numer/denom) * 100
+  
+  
   return(prt)
 }
 
+
+
+
+
+#DF %>% map_dbl(~sum(is.na(.)))
+
 # Calculate rates
 prt<-purrr::map2(.x=numer,.y=denom,.f=getPrt) %>% as.data.frame()
-colnames(prt) <- select_variables[select_variables$name %in% colnames(prt),"V_name"] %>% pull()
 
-prt %<>% replace(is.na(.), 0)
+
+
+
+# Clean up - replace all NaN with 0 (as the base is zero)
+is.nan.data.frame <- function(x) do.call(cbind, lapply(x, is.nan))# needed as is.nan has no data frame method
+prt[is.nan(prt)]<-0
+
+
+colnames(prt) <- vars_new[vars_new$name %in% colnames(prt),"V_name"] %>% pull()
+
+prt %<>%
+bind_cols(select(BG_ACS,"GEOID"))
+
+
 
 # Save the measures and description file
-saveRDS(prt,"./data/BG_1.4_Pct.rds")
+saveRDS(prt,"./data/BG_1.5_Pct.rds")
 
-saveRDS(vars_new,"./data/Variables_to_Include_1.4.rds")
+saveRDS(vars_new,"./data/Variables_to_Include_1.5.rds")
+
+
+
 
 
 ################################################################################################
@@ -232,7 +267,7 @@ saveRDS(vars_new,"./data/Variables_to_Include_1.4.rds")
 v_used <- vars_new %>% filter(Keep_Variables == 1) %>% select(V_name) %>% pull() # select proposed used variables
 
 ############################
-# Check Correlations 1
+# Check Correlations
 ############################
 
 # Calculate correlations
@@ -287,12 +322,30 @@ vars_new <- readRDS("./data/Variables_to_Include_1.4.rds")
 v_used <- vars_new %>% filter(Keep_Variables == 1) %>% select(V_name) %>% pull() # select proposed used variables
 
 
+#Logit Transform
+#cluster_variables <- prt %>%
+#  select(v_used) %>%
+#  mutate_if(is.numeric, logit)
+
+
+#Box Cox Transform
 cluster_variables <- prt %>%
-  select(v_used) %>%
-  mutate_if(is.numeric, logit) %>%
-  bind_cols(select(DF,"GEOID"))
+  select(all_of(v_used)) %>%
+  mutate_all(function(x) x+1) %>%
+  mutate_all(funs( BoxCoxTrans(.,na.rm = TRUE) %>% predict(.)))
 
 
+
+  
+
+
+
+##STANDARDIZE DATA TO A 0-1 RANGE
+range01 <- function(x){(x-min(x,na.rm = TRUE))/(max(x,na.rm = TRUE)-min(x,na.rm = TRUE))}
+
+
+cluster_variables %<>%
+  mutate_all(range01)
 
 #view(dfSummary(cluster_variables), file = "cluster_variables_Summary_Inputs.html")
 
@@ -334,7 +387,7 @@ saveRDS(results,"./data/final_k250_Block_Group.rds")
 
 clusters <- as_tibble(h2o.predict(results,cluster_variables_h20))
 
-usa.bg.cl <- tibble(GEOID= cluster_variables$GEOID,cluster=clusters$predict)
+usa.bg.cl <- tibble(GEOID= prt$GEOID,cluster=clusters$predict)
 
 
 
@@ -361,9 +414,87 @@ for (i in 2:249){
 sil <- data.frame(sil=sil, k=1:249)[-1,]
 
 #Plot Silhouette
-ggplot(data=sil, aes(x=log(k), y=sil, label=k)) +geom_line() + geom_vline(xintercept=log(c(7,22,56)), lty=3, lwd=.5)
+ggplot(data=sil, aes(x=log(k), y=sil, label=k)) +geom_line() + geom_vline(xintercept=log(c(7,14,44)), lty=3, lwd=.5)
 
-#Create cut points in the tree hierarchy 
-ward.cuts <- data.frame(cluster=1:250, cutree(wards.ctr,k=c(7,27,65)))
+#Create cut points in the tree hierarchy and lookup 
+ward.cuts <- data.frame(cluster=1:250, cutree(wards.ctr,k=c(7,14,44)))
+
+usa.bg.cl %<>%
+  left_join(ward.cuts)
+
+#Export clusters
+
+write_csv(usa.bg.cl,"Clusters_BG.csv")
+
+############################################
+# 
+############################################
 
 
+#Get Source Data
+saveRDS(BG_ACS,"./data/BG_ACS.rds")
+BG_ACS <- readRDS("./data/./data/BG_ACS.rds")
+
+usa.bg.cl <- read_csv("Clusters_BX.csv")
+vars_new <- readRDS("./data/Variables_to_Include_1.4.rds")
+
+
+# Select all variables within tables used for the cluster analysis
+t_used <- vars_new %>% filter(Keep_Variables == 1) %>% select(table) %>% pull() %>% unique()# select proposed used variables
+index_used <- vars_new %>% filter(table %in% t_used) %>% select(name) %>% pull() # select proposed used variables
+
+
+index_variables <- BG_ACS %>%
+select("GEOID","B01001_001",all_of(index_used))%>%
+  left_join(usa.bg.cl)
+ 
+
+X11 <- index_variables %>%
+  select(-c(GEOID,cluster,X20,X30)) %>%
+  group_by(X11) %>% 
+  summarise_all(sum,na.rm = TRUE)
+
+
+
+# Convert to percentages & index
+
+all_pct <- X11 %>%
+  adorn_percentages(denominator = "col")
+
+
+  
+  all_index <- all_pct %>% 
+    mutate(
+      across(all_of(index_used),
+             .fns = ~./B01001_001 *100)) %>%
+    select(-B01001_001)
+  
+  names(all_index) <- c("X11",vars_new$V_name[match(names(all_index), vars_new$name)][-1])
+
+  
+  all_index %<>%
+    rownames_to_column() %>%
+    pivot_longer(-rowname, 'variable', 'value') %>%
+    pivot_wider(variable, rowname)
+  
+  
+  
+  write_csv(all_index,"grand_index_BLOCK_GROUP.csv")
+  
+  
+  
+  
+  Block_Group_SF <- readRDS("./data/Block_Group_SF.rds")
+  
+  
+  usa.bg.cl %<>%
+    mutate(GEOID = str_replace(GEOID,"15000US", ""))
+  
+  
+  
+  Block_Group_SF %<>%
+    left_join(usa.bg.cl)
+  
+  
+  st_write(obj = Block_Group_SF, dsn = "Block_Group_SF.gpkg")
+  

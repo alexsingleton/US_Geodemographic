@@ -38,7 +38,7 @@ usa.trt.cl %<>%
 # Create Index Scores
 #########################
 
-X15 <- usa.trt.cl %>%
+X7 <- usa.trt.cl %>%
   select(-c(GEOID,cluster,X8,X69,NAME)) %>%
 group_by(X15) %>% 
   summarise_all(sum,na.rm = TRUE)
@@ -82,8 +82,6 @@ index_scores %<>%
 
 
 write_csv(index_scores,"grand_indexBX.csv")
-
-
 
 
 

@@ -25,22 +25,25 @@ library(e1071)
 
 
 
-All_data <- readRDS("./data/All_data_1.4.rds")
-data <- readRDS("./data/data.rds")
-vars_new <- readRDS("./data/vars_new.rds")
+All_data <- readRDS("./data/All_data_1.5.rds")
+data <- readRDS("./data/data_tract_1.5.rds")
+vars_new <- readRDS("./data/vars_new_1.5.rds")
 
 # Add a state ID
 All_data %<>%
   mutate(state = str_sub(GEOID,1,2))
 
+
+
+
 ################################################################################################
 # Correlation / Input Refinement
 #
 # This code produces correlation descriptions and attribute summaries and was used to refine
-# the input measure list which are versioned between 1.0 and 1.4
+# the input measure list which are versioned between 1.0 and 1.5
 #################################################################################################
 
-
+v_used <- vars_new %>% filter(`New Variables` == 1) %>% select(MEASURE) %>% pull() # select proposed used variables
 
 ############################
 # Check Correlations 1
@@ -48,7 +51,7 @@ All_data %<>%
 
 # Calculate correlations
 data_corr <- All_data %>%
-  select(-c("GEOID","state")) %>%
+  select(all_of(v_used)) %>%
   correlate()
 
 # Filter correlations for 0.6 threshold for inspection
@@ -82,38 +85,6 @@ graph_corr %>%
 
 
 
-############################
-# Check Correlations 2
-############################
-
-# Regress all of the variables against each of the input variables.
-# The resulting r-squared values saved.
-# Variables which have a perfect dependency among them are omitted from the regression. 
-# An example of dependency would be something like percent owner occupied and percent renter occupied 
-# which together will always 100%
-
-
-# d.fit <- numeric()
-# 
-# DF <- All_data[,-which( colnames(All_data) %in%  c("GEOID","state"))]
-# 
-# for(i in names(DF)){
-#   print(i)
-#   d <-lm(DF[,as.character(i)] ~., 
-#          data=DF[,-c(which(x=names(DF)==i, arr.ind=TRUE))])
-#   d.fit <- append(d.fit, summary(d)$adj.r.squared)
-#   #break
-# }
-# 
-# d.fit <- as.numeric(d.fit)
-# 
-# 
-# 
-# #save the r-squared of the regressions in a data frame
-# cor_out <- data.frame(var=names(DF), rsq=d.fit)
-# head(cor_out[order(-cor_out$rsq), ]) #5 highest r-square
-# tail(cor_out[order(-cor_out$rsq), ]) #5 lowest r-square
-
 
 
 
@@ -123,9 +94,8 @@ graph_corr %>%
 # Summary of variable characteristics
 ######################################
 
-view(dfSummary(All_data), file = "Summary_Inputs.html")
-
-
+view(dfSummary(All_data,
+               graph.col = FALSE), file = "Summary_Inputs.html")
 
 
 

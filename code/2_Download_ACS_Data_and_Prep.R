@@ -34,7 +34,7 @@ library(e1071)
 
 
 ## A set of new potential candidate variables were manually identified from the list of potential variables
-vars_new <-  read_excel("data/acs_variables_initial_1.4.xlsx")[-1] # WE SHOULD PROBABLY MAKE THIS A CSV BEFORE RELEASE
+vars_new <-  read_excel("data/acs_variables_initial_1.5.xlsx")[-1] # WE SHOULD PROBABLY MAKE THIS A CSV BEFORE RELEASE
 
 ## Append a new TRUE / FALSE variable to indicate if a percentage
 non_pct_ <- c("C18131","B19083","B25064","B25018","B25076","B25077","B25078","B25088","B25105") #Identify variables that aren't PCT
@@ -46,10 +46,13 @@ vars_new %<>%
 
 ## Create variable list with ACS codes and relative denominator
 denom<-unique(vars_new[((vars_new$pct==TRUE) & (!is.na(vars_new$CONCEPT))),]$denom) # Denominators
-nopct<-unique(vars_new[((vars_new$pct==FALSE) & (!is.na(vars_new$CONCEPT))),]$UniqueID) # Non percentages
 numer <-vars_new[((vars_new$pct==TRUE) & (!is.na(vars_new$CONCEPT))),]$UniqueID # Numerators
 
+nopct<-unique(vars_new[((vars_new$pct==FALSE) & (!is.na(vars_new$CONCEPT))),]$UniqueID) # Non percentages
+
 codes <- unique(c(denom,nopct,numer))#Unique is needed to remove the denominator for Group Quarters so not captured twice
+
+
 
 
 ################
@@ -59,7 +62,7 @@ codes <- unique(c(denom,nopct,numer))#Unique is needed to remove the denominator
 # Set the Census API key and retrieve country codes
 census_api_key("28623dc12367621593ec9f56deeb0c495644e8f0",overwrite = TRUE ,install = TRUE)
 
-readRenviron("~/.Renviron")
+#readRenviron("~/.Renviron")
 us <- unique(fips_codes$state)[1:51]
 
 # Setup parallel processing
@@ -69,7 +72,7 @@ registerDoParallel(cl)
 
 
 
-ptm <- proc.time() # ~3 hours
+ptm <- proc.time() 
 foreach(i = 1:length(us),.packages=c('purrr','dplyr','tidycensus')) %dopar%{
   
   d<-get_acs(geography = "block group", variables = codes, 
@@ -93,7 +96,7 @@ DF %<>%
   select(-NAME,-moe) %>%
   pivot_wider(names_from = variable,values_from = estimate)
 
-saveRDS(DF,"./data/data.rds")
+saveRDS(DF,"./data/data_BG_1.5.rds")
 
 
 
@@ -115,8 +118,7 @@ ag_vars_out <- DF %>%
 
 
 for (i in 1:length(ag_vars)) {
-  
-tmp <- DF %>%
+tmp <-  DF %>%
   select(paste0("",ag_vars[[i]]$UniqueID)) %>%
   mutate(sum = rowSums(.)) %>%
   select(sum) %>%
@@ -180,6 +182,33 @@ All_data  %<>%
   bind_cols(DF[,"GEOID"])
 
 # Save the measures and description file
-saveRDS(All_data,"./data/All_data_1.4.rds")
-saveRDS(vars_new,"./data/vars_new.rds")
+saveRDS(All_data,"./data/All_data_1.5.rds")
+saveRDS(vars_new,"./data/vars_new_1.5.rds")
+
+
+
+
+# Download Polygons
+
+
+# Download All Block Groups
+ctys <- counties(cb = TRUE)
+
+state_codes <- unique(fips_codes$state_code)[1:51]
+
+options(tigris_use_cache = TRUE)
+
+BG_SF <- map_df(state_codes, function(state_code) {
+  state <- filter(ctys, STATEFP == state_code)
+  county_codes <- state$COUNTYFP
+  get_acs(geography = "block group", variables = "B01001_001",
+          state = state_code, county = county_codes,geometry = TRUE)
+})
+
+BG_SF %<>%
+  select(GEOID)
+
+#saveRDS(BG_SF,"./data/Block_Group_SF.rds")
+
+
 
