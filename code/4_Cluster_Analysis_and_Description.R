@@ -257,7 +257,7 @@ select("GEOID")
 
 clusters <- as_tibble(h2o.predict(results,aa_h20))
 
-usa.bg.cl <- tibble(GEOID= ID$GEOID,cluster=clusters$predict)
+usa.bg.cl <- tibble(GEOID= ID$GEOID,cluster=(clusters$predict +1))
 
 
 
@@ -355,5 +355,10 @@ bind_rows(mins)
 #Export clusters
 
 write_csv(usa.bg.cl,"Clusters_K_10_BG_Logit.csv")
+
+
+
+test <- data %>% 
+  filter ( GEOID %in% (usa.bg.cl %>% filter(cluster == 9) %>% select(GEOID) %>% pull()))
 
 

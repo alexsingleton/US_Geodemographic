@@ -19,69 +19,56 @@ library(summarytools)
 library(cluster)
 library(caret)
 library(e1071)
-library(janitor)
+
 
 #Get Source Data
-data <- readRDS("./data/data.rds")
-usa.trt.cl <- read_csv("Clusters_BX.csv")
-vars_new <- readRDS("./data/vars_new.rds")
+data <- readRDS("./data/data_BG_1.5.rds")
+usa.trt.cl <- read_csv("Clusters_K_10_BG_Logit.csv")
+vars_new <- readRDS("./data/vars_new_1.5.rds")
 
-
+v_used <- vars_new %>% filter(`New Variables` == 1) %>% select(MEASURE) %>% pull() # select proposed used variables
 
 
 # Append Clusters
 
 usa.trt.cl %<>%
+  rename(Group = cluster) %>%
   left_join(data)
 
 #########################
 # Create Index Scores
 #########################
 
-X7 <- usa.trt.cl %>%
-  select(-c(GEOID,cluster,X8,X69,NAME)) %>%
-group_by(X15) %>% 
-  summarise_all(sum,na.rm = TRUE)
+GROUP <- usa.trt.cl %>%
+  select(-c(GEOID)) %>%
+group_by(Group) %>% 
+  summarise_all(sum,na.rm = TRUE) 
+
+nms <- paste(vars_new$MEASURE[match(names(GROUP), vars_new$UniqueID)])
+
+names(GROUP) <-  c("Group","Tot_Pop",nms[3:length(nms)])
+
+GROUP <- subset(GROUP, select=which(!duplicated(names(GROUP)))) 
+
+GROUP %<>%
+  select(all_of(c("Group","Tot_Pop",v_used)))
 
 
-X15 %<>%
-pivot_longer(
-  cols = starts_with("est_")) %>%
-pivot_wider(id_cols = "name",names_from = "X15")
+# Convert to %
+  
+  GROUP %<>%
+  select(-Group) %>%
+  mutate_all(~(./sum(.)*100))
 
+# Calculate index scores
 
-
-
-
-
-
-#Get base distribution
-base_pct <- X15 %>%
-  filter(name == "est_B01001_001") %>% # Total Population
-  adorn_percentages
-
-
-
-# Convert to percentages (exclude totals, but include Group Quarters)
-target_pct <- X15 %>%
-  filter(!str_detect(name, '_001') | name == "est_B26001_001") %>%
-  adorn_percentages
+GROUP %<>%
+  mutate_at(vars(colnames(GROUP[,2]):colnames(GROUP[,ncol(GROUP)])), ~(./ Tot_Pop * 100)) %>%
+  select(-Tot_Pop)
 
 
 
-#Calculate index scores
-index_scores <- as_tibble((target_pct[,-1] / base_pct[rep(1:nrow(base_pct), nrow(target_pct)),-1]) * 100) %>% #calculate index score (target / base * 100)
-  mutate(UniqueID = sub("est_", "", target_pct$name)) %>%# append variable code
-  left_join(vars_new[,c("UniqueID")])
-
-# Get a list of ACS variables and append to index
-variables <- load_variables(2019,"acs5")
-
-index_scores %<>%
-  left_join(variables,by = c("UniqueID" = "name"))
-
-
-write_csv(index_scores,"grand_indexBX.csv")
+write_csv(GROUP,"grand_indexBX.csv")
 
 
 
