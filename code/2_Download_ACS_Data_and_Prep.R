@@ -23,7 +23,7 @@ library(janitor)
 library(caret)
 library(e1071)
 
-
+setwd("~/GitHub/US_Geodemographic/")
 
 ################################################################################################
 # Data Import / Prep 
@@ -60,7 +60,7 @@ codes <- unique(c(denom,nopct,numer))#Unique is needed to remove the denominator
 ################
 
 # Set the Census API key and retrieve country codes
-census_api_key("28623dc12367621593ec9f56deeb0c495644e8f0",overwrite = TRUE ,install = TRUE)
+census_api_key("28623dc12367621593ec9f56deeb0c495644e8f0")
 
 #readRenviron("~/.Renviron")
 us <- unique(fips_codes$state)[1:51]

@@ -26,7 +26,7 @@ library(e1071)
 
 
 All_data <- readRDS("./data/All_data_1.5.rds")
-data <- readRDS("./data/data_tract_1.5.rds")
+data <- readRDS("./data/data_BG_1.5.rds")
 vars_new <- readRDS("./data/vars_new_1.5.rds")
 
 # Add a state ID
@@ -43,7 +43,9 @@ All_data %<>%
 # the input measure list which are versioned between 1.0 and 1.5
 #################################################################################################
 
-v_used <- vars_new %>% filter(`New Variables` == 1) %>% select(MEASURE) %>% pull() # select proposed used variables
+v_used <- vars_new %>% filter(`New Variables` == 1) %>%
+          select(MEASURE) %>% 
+          pull() # select proposed used variables
 
 ############################
 # Check Correlations 1
@@ -96,9 +98,6 @@ graph_corr %>%
 
 view(dfSummary(All_data,
                graph.col = FALSE), file = "Summary_Inputs.html")
-
-
-
 
 
 

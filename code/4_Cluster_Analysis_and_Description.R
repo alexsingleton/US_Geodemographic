@@ -23,6 +23,7 @@ library(caret)
 library(e1071)
 library(h2o)
 library(gtools)
+library(arrow)
 
 usa.bg <- readRDS("./data/All_data_1.5.rds")
 data <- readRDS("./data/data_BG_1.5.rds")
@@ -35,6 +36,10 @@ divide100 <- function(x, na.rm=FALSE) (x/100)
 usa.bg %<>%
   select(all_of(c("GEOID",v_used))) %>%
   mutate_if(is.numeric, divide100)
+
+
+
+
 
 
 
@@ -63,7 +68,7 @@ constrained_logit<-function(p,m=6){
 usa.bg.transform <- usa.bg %>%
   select(all_of(c("GEOID",v_used))) %>%
   #filter(complete.cases(.)) %>%
-  mutate(across(is.numeric,~map(.x,constrained_logit)),
+  mutate(across(where(is.numeric),~map(.x,constrained_logit)),
          across(where(is.list),unlist))
 
 
@@ -75,71 +80,76 @@ usa.bg.cc <- usa.bg.transform[complete.cases(usa.bg.transform), ]
 #INCOMPELTE CASES (and count missing / problematic GEOID)
 usa.bg.ic <- usa.bg.transform[!complete.cases(usa.bg.transform), ]
 
+# Write Parquet File
+write_parquet(usa.bg.cc, "usa.bg.cc.parquet")
+write_parquet(usa.bg.ic, "usa.bg.ic.parquet")
 
 
 
-# Create Tract & logit standardise
-usa.tract <- usa.bg %>%
-  mutate(TRACT = str_sub(GEOID, 1,11)) %>%
-  select(-GEOID) %>%
-  group_by(TRACT) %>%
-  summarise(across( .cols = where(is.numeric), sum))
-
-usa.tract %<>%
-  mutate(across(is.numeric,~map(.x,constrained_logit)),
-         across(where(is.list),unlist))
-
-
-
-# Infill missing BG data with tract scores
-
-usa.bg.ic_Infill <- usa.bg.ic %>%
-  select("GEOID")
-
-for (i in 1:length(v_used)) {
-
-v <- v_used[i]
-
-BG_T <- usa.bg.ic %>%
-  select(c("GEOID",all_of(v))) %>%
-  rename(A = v) %>%
-  mutate(TRACT = str_sub(GEOID, 1,11))
-
-T_T <- usa.tract %>%
-  select(c("TRACT",all_of(v))) %>%
-  rename(B = v) 
-
-BG_T %<>%
-  left_join(T_T)
-
-BG_T %<>%
-  mutate(C = if_else(
-    is.na(A),B,A
-  ))
-
-BG_T %<>%
-  select("GEOID","C") %>%
-  setNames(c("GEOID",v))
-
-usa.bg.ic_Infill %<>%
-  left_join(BG_T)
-
-}
-
-# Count Columns with missing Values
-
-m_cnt <- usa.bg.ic_Infill %>%
-  is.na %>% 
-  rowSums
-
-missing_count <- tibble(GEOID= usa.bg[!complete.cases(usa.bg.transform), ]$GEOID,missing=m_cnt)
-
-
-
-#select only those GEOID that have boundaries and less than 5 missing data
-missing_count %<>%
-  filter(missing <= 50)
-
+# 
+# 
+# # Create Tract & logit standardise
+# usa.tract <- usa.bg %>%
+#   mutate(TRACT = str_sub(GEOID, 1,11)) %>%
+#   select(-GEOID) %>%
+#   group_by(TRACT) %>%
+#   summarise(across( .cols = where(is.numeric), sum))
+# 
+# usa.tract %<>%
+#   mutate(across(is.numeric,~map(.x,constrained_logit)),
+#          across(where(is.list),unlist))
+# 
+# 
+# 
+# # Infill missing BG data with tract scores
+# 
+# usa.bg.ic_Infill <- usa.bg.ic %>%
+#   select("GEOID")
+# 
+# for (i in 1:length(v_used)) {
+# 
+# v <- v_used[i]
+# 
+# BG_T <- usa.bg.ic %>%
+#   select(c("GEOID",all_of(v))) %>%
+#   rename(A = v) %>%
+#   mutate(TRACT = str_sub(GEOID, 1,11))
+# 
+# T_T <- usa.tract %>%
+#   select(c("TRACT",all_of(v))) %>%
+#   rename(B = v) 
+# 
+# BG_T %<>%
+#   left_join(T_T)
+# 
+# BG_T %<>%
+#   mutate(C = if_else(
+#     is.na(A),B,A
+#   ))
+# 
+# BG_T %<>%
+#   select("GEOID","C") %>%
+#   setNames(c("GEOID",v))
+# 
+# usa.bg.ic_Infill %<>%
+#   left_join(BG_T)
+# 
+# }
+# 
+# # Count Columns with missing Values
+# 
+# m_cnt <- usa.bg.ic_Infill %>%
+#   is.na %>% 
+#   rowSums
+# 
+# missing_count <- tibble(GEOID= usa.bg[!complete.cases(usa.bg.transform), ]$GEOID,missing=m_cnt)
+# 
+# 
+# 
+# #select only those GEOID that have boundaries and less than 5 missing data
+# missing_count %<>%
+#   filter(missing <= 50)
+# 
 
 
 
