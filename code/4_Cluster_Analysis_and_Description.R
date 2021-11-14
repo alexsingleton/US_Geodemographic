@@ -24,6 +24,7 @@ library(e1071)
 library(h2o)
 library(gtools)
 library(arrow)
+library(h2o)
 
 usa.bg <- readRDS("./data/All_data_1.5.rds")
 data <- readRDS("./data/data_BG_1.5.rds")
