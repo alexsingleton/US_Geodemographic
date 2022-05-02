@@ -81,125 +81,12 @@ usa.bg.cc <- usa.bg.transform[complete.cases(usa.bg.transform), ]
 #INCOMPELTE CASES (and count missing / problematic GEOID)
 usa.bg.ic <- usa.bg.transform[!complete.cases(usa.bg.transform), ]
 
-# Write Parquet File
+# Write Parquet File (input data)
 write_parquet(usa.bg.cc, "usa.bg.cc.parquet")
 write_parquet(usa.bg.ic, "usa.bg.ic.parquet")
 
 
-
-# 
-# 
-# # Create Tract & logit standardise
-# usa.tract <- usa.bg %>%
-#   mutate(TRACT = str_sub(GEOID, 1,11)) %>%
-#   select(-GEOID) %>%
-#   group_by(TRACT) %>%
-#   summarise(across( .cols = where(is.numeric), sum))
-# 
-# usa.tract %<>%
-#   mutate(across(is.numeric,~map(.x,constrained_logit)),
-#          across(where(is.list),unlist))
-# 
-# 
-# 
-# # Infill missing BG data with tract scores
-# 
-# usa.bg.ic_Infill <- usa.bg.ic %>%
-#   select("GEOID")
-# 
-# for (i in 1:length(v_used)) {
-# 
-# v <- v_used[i]
-# 
-# BG_T <- usa.bg.ic %>%
-#   select(c("GEOID",all_of(v))) %>%
-#   rename(A = v) %>%
-#   mutate(TRACT = str_sub(GEOID, 1,11))
-# 
-# T_T <- usa.tract %>%
-#   select(c("TRACT",all_of(v))) %>%
-#   rename(B = v) 
-# 
-# BG_T %<>%
-#   left_join(T_T)
-# 
-# BG_T %<>%
-#   mutate(C = if_else(
-#     is.na(A),B,A
-#   ))
-# 
-# BG_T %<>%
-#   select("GEOID","C") %>%
-#   setNames(c("GEOID",v))
-# 
-# usa.bg.ic_Infill %<>%
-#   left_join(BG_T)
-# 
-# }
-# 
-# # Count Columns with missing Values
-# 
-# m_cnt <- usa.bg.ic_Infill %>%
-#   is.na %>% 
-#   rowSums
-# 
-# missing_count <- tibble(GEOID= usa.bg[!complete.cases(usa.bg.transform), ]$GEOID,missing=m_cnt)
-# 
-# 
-# 
-# #select only those GEOID that have boundaries and less than 5 missing data
-# missing_count %<>%
-#   filter(missing <= 50)
-# 
-
-
-
-
-
-##STANDARDIZE DATA TO A 0-1 RANGE
-#range01 <- function(x){(x-min(x,na.rm = TRUE))/(max(x,na.rm = TRUE)-min(x,na.rm = TRUE))}
-
-# input to cluster analysis is the complete cases standardized in 0-1 (range)
-# aa <- usa.bg.cc %>%
-#   mutate_all(range01)
-# 
-# # creates range standardized versions of records with at least one missing value for later cluster imputation
-# bb <- usa.bg %>%
-#   select(-"GEOID") %>%
-#   mutate_all(range01) %>%
-#   as_tibble()
-# 
-# bb %<>%
-#   select(all_of(v_used)) %>%
-#   mutate(GEOID = usa.bg$GEOID) %>%
-#   filter(GEOID %in% missing_count$GEOID)
-
-
-
-
-
-######################
-# Runs k-means 10,000 (20hrs to complete on XEON W-2225 @ 4.10 GHZ )
-######################
-
-# c<- detectCores() - 1  
-# cl <- makeCluster(c)
-# registerDoParallel(cl)
-# 
-# 
-# ptm <- proc.time()
-# 
-# #results <- foreach( i = rep(1,10000) ) %dopar% {
-# results <- foreach( i = 1 ) %dopar% {
-#     
-#   kmeans( x=aa, centers=250, nstart=i )
-# }
-# proc.time() - ptm
-# 
-# # Stop Cluster
-# stopCluster(cl)
-
-#write.csv(aa,"US_BG_Data.csv")
+#### Clustering
 
 
 h2o.init(max_mem_size="50G")
@@ -273,51 +160,52 @@ usa.bg.cl <- tibble(GEOID= ID$GEOID,cluster=(clusters$predict +1))
 
 
 
-# ######################
-# # Explore break points
-# ######################
-# 
-# # Create a distance matrix for cluster centroids.
-# #diss.ctr <- dist(test$centers)
-# 
-# diss.ctr <- dist(data.frame(h2o.centers(results)))
-# 
-# # Calculate Wards
-# wards.ctr <-hclust(diss.ctr, method="ward.D")
-# 
-# # Silhouette to identify break points
-# 
-# sil <- NA  #hold fit statistics in a data.frame
-# for (i in 2:249){
-#   sil[i] <-  summary(silhouette(cutree(wards.ctr,k=i), diss.ctr))$avg.width
-# }
-# sil <- data.frame(sil=sil, k=1:249)[-1,]
-# 
-# #Plot Silhouette
-# ggplot(data=sil, aes(x=log(k), y=sil, label=k)) +geom_line() + geom_vline(xintercept=log(c(9,21,44)), lty=3, lwd=.5)
-# 
-# #Create cut points in the tree hierarchy 
-# ward.cuts <- data.frame(cluster=1:250, cutree(wards.ctr,k=c(9,21,44)))
-
-
 ############################################
 # Append back Tracts with incomplete cases
 ############################################
 
 # Get Cluster Centres
 
-#centre_output <- result$centers %>%
-#  as_tibble()
-
 centre_output <- h2o.centers(results) %>%
 as_tibble()
-colnames(centre_output) <- colnames(usa.bg.ic_Infill[,2:191])
 
 
-# Refine by frequency of missing variables
-usa.bg.ic_Infill %<>%
-  as_tibble() %>%
-  filter(GEOID %in% missing_count$GEOID)
+#NA / Row
+
+usa.bg.ic %<>% 
+  mutate(na = rowSums(is.na(.))) 
+
+#Check whether population within BG
+
+Population_Present <- data %>%
+  select(GEOID,B01001_001) 
+
+#Append population within BG
+usa.bg.ic %<>%
+  left_join(Population_Present, by='GEOID')
+
+
+
+
+# Explore missing variables and population
+# usa.bg.ic %>%
+#   select(B01001_001,na) %>%
+#   filter(B01001_001 > 0)%>%
+#   View()
+
+
+# Filter for areas with only one missing value
+usa.bg.ic.cut <- usa.bg.ic %>%
+  filter(na == 1) %>%
+  select(-B01001_001,-na)
+
+
+
+
+
+
+
+colnames(centre_output) <- colnames(usa.bg.ic.cut[,2:191])
 
 
 
@@ -326,11 +214,11 @@ usa.bg.ic_Infill %<>%
 
 dist.k <- data.frame()
 
-for (row in 1:nrow(usa.bg.ic_Infill)){
+for (row in 1:nrow(usa.bg.ic.cut)){
   
   for (k in 1:10){
     
-    dist.k[row, k] <- dist(rbind(centre_output[k,], usa.bg.ic_Infill[row, 2:191])) #1 is GEOID
+    dist.k[row, k] <- as.vector(dist(rbind(centre_output[k,], usa.bg.ic.cut[row, 2:191]))) #1 is GEOID
 
     }
 }
@@ -346,11 +234,24 @@ for (row in 1:nrow(dist.k)){
   mins[row,] <- ifelse(test=is.na(dist.k[row,]), yes=NA, no=which.min(dist.k[row,]))
 }
 
+
+
 #Append GEOID to imputed clusters
 mins %<>%
-  mutate(GEOID = usa.bg.ic_Infill$GEOID, cluster = cl) %>%
+  mutate(GEOID = usa.bg.ic.cut$GEOID, cluster = cl) %>%
   select(-cl) %>%
   as_tibble()
+
+#Create lookup for unknown clusters
+
+# Filter for areas with only one missing value
+UnK_Clusters <- usa.bg.ic %>%
+  filter(na > 1) %>%
+  select(GEOID) %>%
+  mutate(cluster = 99)
+
+
+
 
 
 
@@ -359,17 +260,14 @@ mins %<>%
 #   #bind_rows(mins) %>%
 # left_join(ward.cuts)
 
-# Append missing clusters
+# Append missing and unknown clusters
 usa.bg.cl %<>%
-bind_rows(mins)
+bind_rows(mins) %>%
+bind_rows(UnK_Clusters)  
 
 #Export clusters
 
 write_csv(usa.bg.cl,"Clusters_K_10_BG_Logit.csv")
-
-
-
-test <- data %>% 
-  filter ( GEOID %in% (usa.bg.cl %>% filter(cluster == 9) %>% select(GEOID) %>% pull()))
+write_parquet(usa.bg.cl, "Clusters_K_10_BG_Logit.parquet")
 
 

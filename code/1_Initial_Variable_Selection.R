@@ -23,7 +23,7 @@ library(janitor)
 library(caret)
 library(e1071)
 
-setwd("~/GitHub/US_Geodemographic")
+setwd("~/GitHub/")
 
 
 ################################################################################################

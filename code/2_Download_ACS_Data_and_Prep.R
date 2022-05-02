@@ -23,7 +23,7 @@ library(janitor)
 library(caret)
 library(e1071)
 
-setwd("~/GitHub/US_Geodemographic/")
+setwd("~/GitHub/")
 
 ################################################################################################
 # Data Import / Prep 
@@ -34,7 +34,7 @@ setwd("~/GitHub/US_Geodemographic/")
 
 
 ## A set of new potential candidate variables were manually identified from the list of potential variables
-vars_new <-  read_excel("data/acs_variables_initial_1.5.xlsx")[-1] # WE SHOULD PROBABLY MAKE THIS A CSV BEFORE RELEASE
+vars_new <-  read_csv("data/acs_variables_initial_1.5.csv")[-1]
 
 ## Append a new TRUE / FALSE variable to indicate if a percentage
 non_pct_ <- c("C18131","B19083","B25064","B25018","B25076","B25077","B25078","B25088","B25105") #Identify variables that aren't PCT
@@ -208,7 +208,8 @@ BG_SF <- map_df(state_codes, function(state_code) {
 BG_SF %<>%
   select(GEOID)
 
-#saveRDS(BG_SF,"./data/Block_Group_SF.rds")
+saveRDS(BG_SF,"./data/Block_Group_SF.rds")
 
+#st_write(BG_SF, "data/BG_SF.shp")
 
 

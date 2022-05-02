@@ -24,8 +24,7 @@ library(e1071)
 #Get Source Data
 data <- readRDS("./data/data_BG_1.5.rds")
 usa.trt.cl <- read_csv("Clusters_K_10_BG_Logit.csv")
-vars_new <-  read_excel("data/acs_variables_initial_1.5.xlsx")[-1] # WE SHOULD PROBABLY MAKE THIS A CSV BEFORE RELEASE
-
+vars_new <-  read_csv("data/acs_variables_initial_1.5.csv")[-1]
 
 
 # Append Clusters
@@ -45,15 +44,6 @@ group_by(Group) %>%
   summarise_all(sum,na.rm = TRUE) 
 
 
-
-#nms <- paste(vars_new$MEASURE[match(names(GROUP), vars_new$UniqueID)])
-
-#names(GROUP) <-  c("Group","Tot_Pop",nms[3:length(nms)])
-
-#GROUP <- subset(GROUP, select=which(!duplicated(names(GROUP)))) 
-
-#GROUP %<>%
-#  select(all_of(c("Group","Tot_Pop",v_used)))
 
 
 # Convert to %
@@ -87,7 +77,7 @@ GROUP %<>%
 
 
 
-write_csv(GROUP,"grand_index_largerBX.csv")
+write_csv(GROUP,"Grand_Index_Clusters_K_10_BG_Logit.csv")
 
 
 

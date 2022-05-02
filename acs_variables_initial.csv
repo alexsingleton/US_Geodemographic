@@ -1,0 +1,1064 @@
+"","Table ID","Line","UniqueID","Stub","Data Release","Orig_Table","Orig_Var"
+"1","B01001",NA,NA,"SEX BY AGE","1,5",1,0
+"2","B01001",NA,NA,"Universe:  Total population",NA,1,0
+"3","B01001","1","B01001_001","Total:",NA,1,0
+"4","B01001","2","B01001_002","Male:",NA,1,0
+"5","B01001","3","B01001_003","Under 5 years",NA,1,1
+"6","B01001","4","B01001_004","5 to 9 years",NA,1,1
+"7","B01001","5","B01001_005","10 to 14 years",NA,1,1
+"8","B01001","6","B01001_006","15 to 17 years",NA,1,1
+"9","B01001","7","B01001_007","18 and 19 years",NA,1,1
+"10","B01001","8","B01001_008","20 years",NA,1,1
+"11","B01001","9","B01001_009","21 years",NA,1,1
+"12","B01001","10","B01001_010","22 to 24 years",NA,1,1
+"13","B01001","11","B01001_011","25 to 29 years",NA,1,1
+"14","B01001","12","B01001_012","30 to 34 years",NA,1,1
+"15","B01001","13","B01001_013","35 to 39 years",NA,1,1
+"16","B01001","14","B01001_014","40 to 44 years",NA,1,1
+"17","B01001","15","B01001_015","45 to 49 years",NA,1,1
+"18","B01001","16","B01001_016","50 to 54 years",NA,1,1
+"19","B01001","17","B01001_017","55 to 59 years",NA,1,1
+"20","B01001","18","B01001_018","60 and 61 years",NA,1,1
+"21","B01001","19","B01001_019","62 to 64 years",NA,1,1
+"22","B01001","20","B01001_020","65 and 66 years",NA,1,1
+"23","B01001","21","B01001_021","67 to 69 years",NA,1,1
+"24","B01001","22","B01001_022","70 to 74 years",NA,1,1
+"25","B01001","23","B01001_023","75 to 79 years",NA,1,1
+"26","B01001","24","B01001_024","80 to 84 years",NA,1,1
+"27","B01001","25","B01001_025","85 years and over",NA,1,1
+"28","B01001","26","B01001_026","Female:",NA,1,0
+"29","B01001","27","B01001_027","Under 5 years",NA,1,1
+"30","B01001","28","B01001_028","5 to 9 years",NA,1,1
+"31","B01001","29","B01001_029","10 to 14 years",NA,1,1
+"32","B01001","30","B01001_030","15 to 17 years",NA,1,1
+"33","B01001","31","B01001_031","18 and 19 years",NA,1,1
+"34","B01001","32","B01001_032","20 years",NA,1,1
+"35","B01001","33","B01001_033","21 years",NA,1,1
+"36","B01001","34","B01001_034","22 to 24 years",NA,1,1
+"37","B01001","35","B01001_035","25 to 29 years",NA,1,1
+"38","B01001","36","B01001_036","30 to 34 years",NA,1,1
+"39","B01001","37","B01001_037","35 to 39 years",NA,1,1
+"40","B01001","38","B01001_038","40 to 44 years",NA,1,1
+"41","B01001","39","B01001_039","45 to 49 years",NA,1,1
+"42","B01001","40","B01001_040","50 to 54 years",NA,1,1
+"43","B01001","41","B01001_041","55 to 59 years",NA,1,1
+"44","B01001","42","B01001_042","60 and 61 years",NA,1,1
+"45","B01001","43","B01001_043","62 to 64 years",NA,1,1
+"46","B01001","44","B01001_044","65 and 66 years",NA,1,1
+"47","B01001","45","B01001_045","67 to 69 years",NA,1,1
+"48","B01001","46","B01001_046","70 to 74 years",NA,1,1
+"49","B01001","47","B01001_047","75 to 79 years",NA,1,1
+"50","B01001","48","B01001_048","80 to 84 years",NA,1,1
+"51","B01001","49","B01001_049","85 years and over",NA,1,1
+"52","B02001",NA,NA,"RACE","1,5",1,0
+"53","B02001",NA,NA,"Universe:  Total population",NA,1,0
+"54","B02001","1","B02001_001","Total:",NA,1,0
+"55","B02001","2","B02001_002","White alone",NA,1,1
+"56","B02001","3","B02001_003","Black or African American alone",NA,1,1
+"57","B02001","4","B02001_004","American Indian and Alaska Native alone",NA,1,1
+"58","B02001","5","B02001_005","Asian alone",NA,1,1
+"59","B02001","6","B02001_006","Native Hawaiian and Other Pacific Islander alone",NA,1,0
+"60","B02001","7","B02001_007","Some other race alone",NA,1,0
+"61","B02001","8","B02001_008","Two or more races:",NA,1,0
+"62","B02001","9","B02001_009","Two races including Some other race",NA,1,0
+"63","B02001","10","B02001_010","Two races excluding Some other race, and three or more races",NA,1,0
+"64","C02003",NA,NA,"DETAILED RACE","1,5",0,0
+"65","C02003",NA,NA,"Universe:  Total population",NA,0,0
+"66","C02003","1","C02003_001","Total:",NA,0,0
+"67","C02003","2","C02003_002","Population of one race:",NA,0,0
+"68","C02003","3","C02003_003","White",NA,0,0
+"69","C02003","4","C02003_004","Black or African American",NA,0,0
+"70","C02003","5","C02003_005","American Indian and Alaska Native",NA,0,0
+"71","C02003","6","C02003_006","Asian",NA,0,0
+"72","C02003","7","C02003_007","Native Hawaiian and Other Pacific Islander",NA,0,0
+"73","C02003","8","C02003_008","Some other race",NA,0,0
+"74","C02003","9","C02003_009","Population of two or more races:",NA,0,0
+"75","C02003","10","C02003_010","Two races including Some other race",NA,0,0
+"76","C02003","11","C02003_011","Two races excluding Some other race, and three or more races",NA,0,0
+"77","C02003","12","C02003_012","Population of two races:",NA,0,0
+"78","C02003","13","C02003_013","White; Black or African American",NA,0,0
+"79","C02003","14","C02003_014","White; American Indian and Alaska Native",NA,0,0
+"80","C02003","15","C02003_015","White; Asian",NA,0,0
+"81","C02003","16","C02003_016","Black or African American; American Indian and Alaska Native",NA,0,0
+"82","C02003","17","C02003_017","All other two race combinations",NA,0,0
+"83","C02003","18","C02003_018","Population of three races",NA,0,0
+"84","C02003","19","C02003_019","Population of four or more races",NA,0,0
+"85","B03002",NA,NA,"HISPANIC OR LATINO ORIGIN BY RACE","1,5",0,0
+"86","B03002",NA,NA,"Universe:  Total population",NA,0,0
+"87","B03002","1","B03002_001","Total:",NA,0,0
+"88","B03002","2","B03002_002","Not Hispanic or Latino:",NA,0,0
+"89","B03002","3","B03002_003","White alone",NA,0,0
+"90","B03002","4","B03002_004","Black or African American alone",NA,0,0
+"91","B03002","5","B03002_005","American Indian and Alaska Native alone",NA,0,0
+"92","B03002","6","B03002_006","Asian alone",NA,0,0
+"93","B03002","7","B03002_007","Native Hawaiian and Other Pacific Islander alone",NA,0,0
+"94","B03002","8","B03002_008","Some other race alone",NA,0,0
+"95","B03002","9","B03002_009","Two or more races:",NA,0,0
+"96","B03002","10","B03002_010","Two races including Some other race",NA,0,0
+"97","B03002","11","B03002_011","Two races excluding Some other race, and three or more races",NA,0,0
+"98","B03002","12","B03002_012","Hispanic or Latino:",NA,0,0
+"99","B03002","13","B03002_013","White alone",NA,0,0
+"100","B03002","14","B03002_014","Black or African American alone",NA,0,0
+"101","B03002","15","B03002_015","American Indian and Alaska Native alone",NA,0,0
+"102","B03002","16","B03002_016","Asian alone",NA,0,0
+"103","B03002","17","B03002_017","Native Hawaiian and Other Pacific Islander alone",NA,0,0
+"104","B03002","18","B03002_018","Some other race alone",NA,0,0
+"105","B03002","19","B03002_019","Two or more races:",NA,0,0
+"106","B03002","20","B03002_020","Two races including Some other race",NA,0,0
+"107","B03002","21","B03002_021","Two races excluding Some other race, and three or more races",NA,0,0
+"108","B03003",NA,NA,"HISPANIC OR LATINO ORIGIN","1,5",0,0
+"109","B03003",NA,NA,"Universe:  Total population",NA,0,0
+"110","B03003","1","B03003_001","Total:",NA,0,0
+"111","B03003","2","B03003_002","Not Hispanic or Latino",NA,0,0
+"112","B03003","3","B03003_003","Hispanic or Latino",NA,0,0
+"113","B07009",NA,NA,"GEOGRAPHICAL MOBILITY IN THE PAST YEAR BY EDUCATIONAL ATTAINMENT FOR CURRENT RESIDENCE IN THE UNITED STATES","1,5",1,0
+"114","B07009",NA,NA,"Universe:  Population 25 years and over in the United States",NA,1,0
+"115","B07009","1","B07009_001","Total:",NA,1,0
+"116","B07009","2","B07009_002","Less than high school graduate",NA,1,1
+"117","B07009","3","B07009_003","High school graduate (includes equivalency)",NA,1,1
+"118","B07009","4","B07009_004","Some college or associate's degree",NA,1,1
+"119","B07009","5","B07009_005","Bachelor's degree",NA,1,1
+"120","B07009","6","B07009_006","Graduate or professional degree",NA,1,1
+"121","B07009","7","B07009_007","Same house 1 year ago:",NA,1,0
+"122","B07009","8","B07009_008","Less than high school graduate",NA,1,0
+"123","B07009","9","B07009_009","High school graduate (includes equivalency)",NA,1,0
+"124","B07009","10","B07009_010","Some college or associate's degree",NA,1,0
+"125","B07009","11","B07009_011","Bachelor's degree",NA,1,0
+"126","B07009","12","B07009_012","Graduate or professional degree",NA,1,0
+"127","B07009","13","B07009_013","Moved within same county:",NA,1,0
+"128","B07009","14","B07009_014","Less than high school graduate",NA,1,0
+"129","B07009","15","B07009_015","High school graduate (includes equivalency)",NA,1,0
+"130","B07009","16","B07009_016","Some college or associate's degree",NA,1,0
+"131","B07009","17","B07009_017","Bachelor's degree",NA,1,0
+"132","B07009","18","B07009_018","Graduate or professional degree",NA,1,0
+"133","B07009","19","B07009_019","Moved from different county within same state:",NA,1,0
+"134","B07009","20","B07009_020","Less than high school graduate",NA,1,0
+"135","B07009","21","B07009_021","High school graduate (includes equivalency)",NA,1,0
+"136","B07009","22","B07009_022","Some college or associate's degree",NA,1,0
+"137","B07009","23","B07009_023","Bachelor's degree",NA,1,0
+"138","B07009","24","B07009_024","Graduate or professional degree",NA,1,0
+"139","B07009","25","B07009_025","Moved from different state:",NA,1,0
+"140","B07009","26","B07009_026","Less than high school graduate",NA,1,0
+"141","B07009","27","B07009_027","High school graduate (includes equivalency)",NA,1,0
+"142","B07009","28","B07009_028","Some college or associate's degree",NA,1,0
+"143","B07009","29","B07009_029","Bachelor's degree",NA,1,0
+"144","B07009","30","B07009_030","Graduate or professional degree",NA,1,0
+"145","B07009","31","B07009_031","Moved from abroad:",NA,1,0
+"146","B07009","32","B07009_032","Less than high school graduate",NA,1,0
+"147","B07009","33","B07009_033","High school graduate (includes equivalency)",NA,1,0
+"148","B07009","34","B07009_034","Some college or associate's degree",NA,1,0
+"149","B07009","35","B07009_035","Bachelor's degree",NA,1,0
+"150","B07009","36","B07009_036","Graduate or professional degree",NA,1,0
+"151","B07204",NA,NA,"GEOGRAPHICAL MOBILITY IN THE PAST YEAR FOR CURRENT RESIDENCE--STATE, COUNTY AND PLACE LEVEL IN THE UNITED STATES","1,5",1,0
+"152","B07204",NA,NA,"Universe:  Population 1 year and over in the United States",NA,1,0
+"153","B07204","1","B07204_001","Total:",NA,1,0
+"154","B07204","2","B07204_002","Same house 1 year ago",NA,1,0
+"155","B07204","3","B07204_003","Different house in United States 1 year ago:",NA,1,0
+"156","B07204","4","B07204_004","Same city or town:",NA,1,1
+"157","B07204","5","B07204_005","Same county",NA,1,0
+"158","B07204","6","B07204_006","Different county (same state)",NA,1,0
+"159","B07204","7","B07204_007","Elsewhere:",NA,1,1
+"160","B07204","8","B07204_008","Same county",NA,1,0
+"161","B07204","9","B07204_009","Different county:",NA,1,0
+"162","B07204","10","B07204_010","Same state",NA,1,0
+"163","B07204","11","B07204_011","Different state:",NA,1,0
+"164","B07204","12","B07204_012","Northeast",NA,1,0
+"165","B07204","13","B07204_013","Midwest",NA,1,0
+"166","B07204","14","B07204_014","South",NA,1,0
+"167","B07204","15","B07204_015","West",NA,1,0
+"168","B07204","16","B07204_016","Abroad 1 year ago:",NA,1,0
+"169","B07204","17","B07204_017","Puerto Rico",NA,1,0
+"170","B07204","18","B07204_018","U.S. Island Areas",NA,1,0
+"171","B07204","19","B07204_019","Foreign country",NA,1,0
+"172","B08007",NA,NA,"SEX OF WORKERS BY PLACE OF WORK--STATE AND COUNTY LEVEL","1,5",0,0
+"173","B08007",NA,NA,"Universe:  Workers 16 years and over",NA,0,0
+"174","B08007","1","B08007_001","Total:",NA,0,0
+"175","B08007","2","B08007_002","Worked in state of residence:",NA,0,0
+"176","B08007","3","B08007_003","Worked in county of residence",NA,0,0
+"177","B08007","4","B08007_004","Worked outside county of residence",NA,0,0
+"178","B08007","5","B08007_005","Worked outside state of residence",NA,0,0
+"179","B08007","6","B08007_006","Male:",NA,0,0
+"180","B08007","7","B08007_007","Worked in state of residence:",NA,0,0
+"181","B08007","8","B08007_008","Worked in county of residence",NA,0,0
+"182","B08007","9","B08007_009","Worked outside county of residence",NA,0,0
+"183","B08007","10","B08007_010","Worked outside state of residence",NA,0,0
+"184","B08007","11","B08007_011","Female:",NA,0,0
+"185","B08007","12","B08007_012","Worked in state of residence:",NA,0,0
+"186","B08007","13","B08007_013","Worked in county of residence",NA,0,0
+"187","B08007","14","B08007_014","Worked outside county of residence",NA,0,0
+"188","B08007","15","B08007_015","Worked outside state of residence",NA,0,0
+"189","B08008",NA,NA,"SEX OF WORKERS BY PLACE OF WORK--PLACE LEVEL","1,5",0,0
+"190","B08008",NA,NA,"Universe:  Workers 16 years and over",NA,0,0
+"191","B08008","1","B08008_001","Total:",NA,0,0
+"192","B08008","2","B08008_002","Living in a place:",NA,0,0
+"193","B08008","3","B08008_003","Worked in place of residence",NA,0,0
+"194","B08008","4","B08008_004","Worked outside place of residence",NA,0,0
+"195","B08008","5","B08008_005","Not living in a place",NA,0,0
+"196","B08008","6","B08008_006","Male:",NA,0,0
+"197","B08008","7","B08008_007","Living in a place:",NA,0,0
+"198","B08008","8","B08008_008","Worked in place of residence",NA,0,0
+"199","B08008","9","B08008_009","Worked outside place of residence",NA,0,0
+"200","B08008","10","B08008_010","Not living in a place",NA,0,0
+"201","B08008","11","B08008_011","Female:",NA,0,0
+"202","B08008","12","B08008_012","Living in a place:",NA,0,0
+"203","B08008","13","B08008_013","Worked in place of residence",NA,0,0
+"204","B08008","14","B08008_014","Worked outside place of residence",NA,0,0
+"205","B08008","15","B08008_015","Not living in a place",NA,0,0
+"206","B08009",NA,NA,"SEX OF WORKERS BY PLACE OF WORK--MINOR CIVIL DIVISION LEVEL FOR 12 SELECTED STATES (CT, ME, MA, MI, MN, NH, NJ, NY, PA, RI, VT, WI)","1,5",0,0
+"207","B08009",NA,NA,"Universe:  Workers 16 years and over",NA,0,0
+"208","B08009","1","B08009_001","Total:",NA,0,0
+"209","B08009","2","B08009_002","Living in the 12 selected states:",NA,0,0
+"210","B08009","3","B08009_003","Worked in MCD of residence",NA,0,0
+"211","B08009","4","B08009_004","Worked outside MCD of residence",NA,0,0
+"212","B08009","5","B08009_005","Not living in the 12 selected states",NA,0,0
+"213","B08009","6","B08009_006","Male:",NA,0,0
+"214","B08009","7","B08009_007","Living in the 12 selected states:",NA,0,0
+"215","B08009","8","B08009_008","Worked in MCD of residence",NA,0,0
+"216","B08009","9","B08009_009","Worked outside MCD of residence",NA,0,0
+"217","B08009","10","B08009_010","Not living in the 12 selected states",NA,0,0
+"218","B08009","11","B08009_011","Female:",NA,0,0
+"219","B08009","12","B08009_012","Living in the 12 selected states:",NA,0,0
+"220","B08009","13","B08009_013","Worked in MCD of residence",NA,0,0
+"221","B08009","14","B08009_014","Worked outside MCD of residence",NA,0,0
+"222","B08009","15","B08009_015","Not living in the 12 selected states",NA,0,0
+"223","B08013",NA,NA,"AGGREGATE TRAVEL TIME TO WORK (IN MINUTES) OF WORKERS BY SEX","1,5",0,0
+"224","B08013",NA,NA,"Universe:  Workers 16 years and over who did not work from home",NA,0,0
+"225","B08013","1","B08013_001","Aggregate travel time to work (in minutes):",NA,0,0
+"226","B08013","2","B08013_002","Male",NA,0,0
+"227","B08013","3","B08013_003","Female",NA,0,0
+"228","B08014",NA,NA,"SEX OF WORKERS BY VEHICLES AVAILABLE","1,5",1,0
+"229","B08014",NA,NA,"Universe:  Workers 16 years and over in households",NA,1,0
+"230","B08014","1","B08014_001","Total:",NA,1,0
+"231","B08014","2","B08014_002","No vehicle available",NA,1,1
+"232","B08014","3","B08014_003","1 vehicle available",NA,1,0
+"233","B08014","4","B08014_004","2 vehicles available",NA,1,0
+"234","B08014","5","B08014_005","3 vehicles available",NA,1,0
+"235","B08014","6","B08014_006","4 vehicles available",NA,1,0
+"236","B08014","7","B08014_007","5 or more vehicles available",NA,1,0
+"237","B08014","8","B08014_008","Male:",NA,1,0
+"238","B08014","9","B08014_009","No vehicle available",NA,1,0
+"239","B08014","10","B08014_010","1 vehicle available",NA,1,0
+"240","B08014","11","B08014_011","2 vehicles available",NA,1,0
+"241","B08014","12","B08014_012","3 vehicles available",NA,1,0
+"242","B08014","13","B08014_013","4 vehicles available",NA,1,0
+"243","B08014","14","B08014_014","5 or more vehicles available",NA,1,0
+"244","B08014","15","B08014_015","Female:",NA,1,0
+"245","B08014","16","B08014_016","No vehicle available",NA,1,0
+"246","B08014","17","B08014_017","1 vehicle available",NA,1,0
+"247","B08014","18","B08014_018","2 vehicles available",NA,1,0
+"248","B08014","19","B08014_019","3 vehicles available",NA,1,0
+"249","B08014","20","B08014_020","4 vehicles available",NA,1,0
+"250","B08014","21","B08014_021","5 or more vehicles available",NA,1,0
+"251","B08015",NA,NA,"AGGREGATE NUMBER OF VEHICLES (CAR, TRUCK, OR VAN) USED IN COMMUTING BY WORKERS 16 YEARS AND OVER BY SEX","1,5",0,0
+"252","B08015",NA,NA,"Universe:  Workers whose means of transportation is car, truck, or van",NA,0,0
+"253","B08015","1","B08015_001","Aggregate number of vehicles (car, truck, or van) used in commuting:",NA,0,0
+"254","B08015","2","B08015_002","Male",NA,0,0
+"255","B08015","3","B08015_003","Female",NA,0,0
+"256","B08301",NA,NA,"MEANS OF TRANSPORTATION TO WORK","1,5",1,0
+"257","B08301",NA,NA,"Universe:  Workers 16 years and over",NA,1,0
+"258","B08301","1","B08301_001","Total:",NA,1,0
+"259","B08301","2","B08301_002","Car, truck, or van:",NA,1,0
+"260","B08301","3","B08301_003","Drove alone",NA,1,0
+"261","B08301","4","B08301_004","Carpooled:",NA,1,0
+"262","B08301","5","B08301_005","In 2-person carpool",NA,1,0
+"263","B08301","6","B08301_006","In 3-person carpool",NA,1,0
+"264","B08301","7","B08301_007","In 4-person carpool",NA,1,0
+"265","B08301","8","B08301_008","In 5- or 6-person carpool",NA,1,0
+"266","B08301","9","B08301_009","In 7-or-more-person carpool",NA,1,0
+"267","B08301","10","B08301_010","Public transportation (excluding taxicab):",NA,1,1
+"268","B08301","11","B08301_011","Bus",NA,1,0
+"269","B08301","12","B08301_012","Subway or elevated rail",NA,1,0
+"270","B08301","13","B08301_013","Long-distance train or commuter rail",NA,1,0
+"271","B08301","14","B08301_014","Light rail, streetcar or trolley (carro público in Puerto Rico)",NA,1,0
+"272","B08301","15","B08301_015","Ferryboat",NA,1,0
+"273","B08301","16","B08301_016","Taxicab",NA,1,0
+"274","B08301","17","B08301_017","Motorcycle",NA,1,0
+"275","B08301","18","B08301_018","Bicycle",NA,1,0
+"276","B08301","19","B08301_019","Walked",NA,1,0
+"277","B08301","20","B08301_020","Other means",NA,1,0
+"278","B08301","21","B08301_021","Worked from home",NA,1,0
+"279","B08302",NA,NA,"TIME OF DEPARTURE TO GO TO WORK","1,5",0,0
+"280","B08302",NA,NA,"Universe:  Workers 16 years and over who did not work from home",NA,0,0
+"281","B08302","1","B08302_001","Total:",NA,0,0
+"282","B08302","2","B08302_002","12:00 a.m. to 4:59 a.m.",NA,0,0
+"283","B08302","3","B08302_003","5:00 a.m. to 5:29 a.m.",NA,0,0
+"284","B08302","4","B08302_004","5:30 a.m. to 5:59 a.m.",NA,0,0
+"285","B08302","5","B08302_005","6:00 a.m. to 6:29 a.m.",NA,0,0
+"286","B08302","6","B08302_006","6:30 a.m. to 6:59 a.m.",NA,0,0
+"287","B08302","7","B08302_007","7:00 a.m. to 7:29 a.m.",NA,0,0
+"288","B08302","8","B08302_008","7:30 a.m. to 7:59 a.m.",NA,0,0
+"289","B08302","9","B08302_009","8:00 a.m. to 8:29 a.m.",NA,0,0
+"290","B08302","10","B08302_010","8:30 a.m. to 8:59 a.m.",NA,0,0
+"291","B08302","11","B08302_011","9:00 a.m. to 9:59 a.m.",NA,0,0
+"292","B08302","12","B08302_012","10:00 a.m. to 10:59 a.m.",NA,0,0
+"293","B08302","13","B08302_013","11:00 a.m. to 11:59 a.m.",NA,0,0
+"294","B08302","14","B08302_014","12:00 p.m. to 3:59 p.m.",NA,0,0
+"295","B08302","15","B08302_015","4:00 p.m. to 11:59 p.m.",NA,0,0
+"296","B08303",NA,NA,"TRAVEL TIME TO WORK","1,5",1,0
+"297","B08303",NA,NA,"Universe:  Workers 16 years and over who did not work from home",NA,1,0
+"298","B08303","1","B08303_001","Total:",NA,1,0
+"299","B08303","2","B08303_002","Less than 5 minutes",NA,1,0
+"300","B08303","3","B08303_003","5 to 9 minutes",NA,1,1
+"301","B08303","4","B08303_004","10 to 14 minutes",NA,1,1
+"302","B08303","5","B08303_005","15 to 19 minutes",NA,1,1
+"303","B08303","6","B08303_006","20 to 24 minutes",NA,1,1
+"304","B08303","7","B08303_007","25 to 29 minutes",NA,1,1
+"305","B08303","8","B08303_008","30 to 34 minutes",NA,1,1
+"306","B08303","9","B08303_009","35 to 39 minutes",NA,1,1
+"307","B08303","10","B08303_010","40 to 44 minutes",NA,1,1
+"308","B08303","11","B08303_011","45 to 59 minutes",NA,1,1
+"309","B08303","12","B08303_012","60 to 89 minutes",NA,1,1
+"310","B08303","13","B08303_013","90 or more minutes",NA,1,1
+"311","B09019",NA,NA,"HOUSEHOLD TYPE (INCLUDING LIVING ALONE) BY RELATIONSHIP","1,5",0,0
+"312","B09019",NA,NA,"Universe:  Total population",NA,0,0
+"313","B09019","1","B09019_001","Total:",NA,0,0
+"314","B09019","2","B09019_002","In households:",NA,0,0
+"315","B09019","3","B09019_003","Householder:",NA,0,0
+"316","B09019","4","B09019_004","Male:",NA,0,0
+"317","B09019","5","B09019_005","Living alone",NA,0,0
+"318","B09019","6","B09019_006","Not living alone",NA,0,0
+"319","B09019","7","B09019_007","Female:",NA,0,0
+"320","B09019","8","B09019_008","Living alone",NA,0,0
+"321","B09019","9","B09019_009","Not living alone",NA,0,0
+"322","B09019","10","B09019_010","Opposite-sex spouse",NA,0,0
+"323","B09019","11","B09019_011","Same-sex spouse",NA,0,0
+"324","B09019","12","B09019_012","Opposite-sex unmarried partner",NA,0,0
+"325","B09019","13","B09019_013","Same-sex unmarried partner",NA,0,0
+"326","B09019","14","B09019_014","Child:",NA,0,0
+"327","B09019","15","B09019_015","Biological child",NA,0,0
+"328","B09019","16","B09019_016","Adopted child",NA,0,0
+"329","B09019","17","B09019_017","Stepchild",NA,0,0
+"330","B09019","18","B09019_018","Grandchild",NA,0,0
+"331","B09019","19","B09019_019","Brother or sister",NA,0,0
+"332","B09019","20","B09019_020","Parent",NA,0,0
+"333","B09019","21","B09019_021","Parent-in-law",NA,0,0
+"334","B09019","22","B09019_022","Son-in-law or daughter-in-law",NA,0,0
+"335","B09019","23","B09019_023","Other relatives",NA,0,0
+"336","B09019","24","B09019_024","Foster child",NA,0,0
+"337","B09019","25","B09019_025","Other nonrelatives",NA,0,0
+"338","B09019","26","B09019_026","In group quarters",NA,0,0
+"339","B11001",NA,NA,"HOUSEHOLD TYPE (INCLUDING LIVING ALONE)","1,5",1,0
+"340","B11001",NA,NA,"Universe:  Households",NA,1,0
+"341","B11001","1","B11001_001","Total:",NA,1,0
+"342","B11001","2","B11001_002","Family households:",NA,1,0
+"343","B11001","3","B11001_003","Married-couple family",NA,1,1
+"344","B11001","4","B11001_004","Other family:",NA,1,0
+"345","B11001","5","B11001_005","Male householder, no spouse present",NA,1,0
+"346","B11001","6","B11001_006","Female householder, no spouse present",NA,1,0
+"347","B11001","7","B11001_007","Nonfamily households:",NA,1,0
+"348","B11001","8","B11001_008","Householder living alone",NA,1,0
+"349","B11001","9","B11001_009","Householder not living alone",NA,1,0
+"350","B11009",NA,NA,"COUPLED HOUSEHOLDS BY TYPE","1,5",1,0
+"351","B11009",NA,NA,"Universe:  Households",NA,1,0
+"352","B11009","1","B11009_001","Total:",NA,1,0
+"353","B11009","2","B11009_002","Married couple households:",NA,1,0
+"354","B11009","3","B11009_003","Opposite-sex",NA,1,1
+"355","B11009","4","B11009_004","Same-sex:",NA,1,0
+"356","B11009","5","B11009_005","Male householder and male spouse",NA,1,1
+"357","B11009","6","B11009_006","Female householder and female spouse",NA,1,0
+"358","B11009","7","B11009_007","Cohabiting couple households:",NA,1,0
+"359","B11009","8","B11009_008","Opposite-sex",NA,1,0
+"360","B11009","9","B11009_009","Same-sex:",NA,1,0
+"361","B11009","10","B11009_010","Male householder and male partner",NA,1,0
+"362","B11009","11","B11009_011","Female householder and female partner",NA,1,0
+"363","B11009","12","B11009_012","All other households",NA,1,0
+"364","B11017",NA,NA,"MULTIGENERATIONAL HOUSEHOLDS","1,5",0,0
+"365","B11017",NA,NA,"Universe:  Total households",NA,0,0
+"366","B11017","1","B11017_001","Total:",NA,0,0
+"367","B11017","2","B11017_002","Multigenerational households",NA,0,0
+"368","B11017","3","B11017_003","All other households",NA,0,0
+"369","B12001",NA,NA,"SEX BY MARITAL STATUS FOR THE POPULATION 15 YEARS AND OVER","1,5",0,0
+"370","B12001",NA,NA,"Universe:  Population 15 years and over",NA,0,0
+"371","B12001","1","B12001_001","Total:",NA,0,0
+"372","B12001","2","B12001_002","Male:",NA,0,0
+"373","B12001","3","B12001_003","Never married",NA,0,0
+"374","B12001","4","B12001_004","Now married:",NA,0,0
+"375","B12001","5","B12001_005","Married, spouse present",NA,0,0
+"376","B12001","6","B12001_006","Married, spouse absent:",NA,0,0
+"377","B12001","7","B12001_007","Separated",NA,0,0
+"378","B12001","8","B12001_008","Other",NA,0,0
+"379","B12001","9","B12001_009","Widowed",NA,0,0
+"380","B12001","10","B12001_010","Divorced",NA,0,0
+"381","B12001","11","B12001_011","Female:",NA,0,0
+"382","B12001","12","B12001_012","Never married",NA,0,0
+"383","B12001","13","B12001_013","Now married:",NA,0,0
+"384","B12001","14","B12001_014","Married, spouse present",NA,0,0
+"385","B12001","15","B12001_015","Married, spouse absent:",NA,0,0
+"386","B12001","16","B12001_016","Separated",NA,0,0
+"387","B12001","17","B12001_017","Other",NA,0,0
+"388","B12001","18","B12001_018","Widowed",NA,0,0
+"389","B12001","19","B12001_019","Divorced",NA,0,0
+"390","B15003",NA,NA,"EDUCATIONAL ATTAINMENT FOR THE POPULATION 25 YEARS AND OVER","1,5",0,0
+"391","B15003",NA,NA,"Universe:  Population 25 years and over",NA,0,0
+"392","B15003","1","B15003_001","Total:",NA,0,0
+"393","B15003","2","B15003_002","No schooling completed",NA,0,0
+"394","B15003","3","B15003_003","Nursery school",NA,0,0
+"395","B15003","4","B15003_004","Kindergarten",NA,0,0
+"396","B15003","5","B15003_005","1st grade",NA,0,0
+"397","B15003","6","B15003_006","2nd grade",NA,0,0
+"398","B15003","7","B15003_007","3rd grade",NA,0,0
+"399","B15003","8","B15003_008","4th grade",NA,0,0
+"400","B15003","9","B15003_009","5th grade",NA,0,0
+"401","B15003","10","B15003_010","6th grade",NA,0,0
+"402","B15003","11","B15003_011","7th grade",NA,0,0
+"403","B15003","12","B15003_012","8th grade",NA,0,0
+"404","B15003","13","B15003_013","9th grade",NA,0,0
+"405","B15003","14","B15003_014","10th grade",NA,0,0
+"406","B15003","15","B15003_015","11th grade",NA,0,0
+"407","B15003","16","B15003_016","12th grade, no diploma",NA,0,0
+"408","B15003","17","B15003_017","Regular high school diploma",NA,0,0
+"409","B15003","18","B15003_018","GED or alternative credential",NA,0,0
+"410","B15003","19","B15003_019","Some college, less than 1 year",NA,0,0
+"411","B15003","20","B15003_020","Some college, 1 or more years, no degree",NA,0,0
+"412","B15003","21","B15003_021","Associate's degree",NA,0,0
+"413","B15003","22","B15003_022","Bachelor's degree",NA,0,0
+"414","B15003","23","B15003_023","Master's degree",NA,0,0
+"415","B15003","24","B15003_024","Professional school degree",NA,0,0
+"416","B15003","25","B15003_025","Doctorate degree",NA,0,0
+"417","B16001",NA,NA,"LANGUAGE SPOKEN AT HOME BY ABILITY TO SPEAK ENGLISH FOR THE POPULATION 5 YEARS AND OVER","1,5",1,0
+"418","B16001",NA,NA,"Universe:  Population 5 years and over",NA,1,0
+"419","B16001","1","B16001_001","Total:",NA,1,0
+"420","B16001","2","B16001_002","Speak only English",NA,1,1
+"421","B16001","3","B16001_003","Spanish:",NA,1,1
+"422","B16001","4","B16001_004","Speak English ""very well""",NA,1,0
+"423","B16001","5","B16001_005","Speak English less than ""very well""",NA,1,1
+"424","B16001","6","B16001_006","French (incl. Cajun):",NA,1,0
+"425","B16001","7","B16001_007","Speak English ""very well""",NA,1,0
+"426","B16001","8","B16001_008","Speak English less than ""very well""",NA,1,0
+"427","B16001","9","B16001_009","Haitian:",NA,1,0
+"428","B16001","10","B16001_010","Speak English ""very well""",NA,1,0
+"429","B16001","11","B16001_011","Speak English less than ""very well""",NA,1,0
+"430","B16001","12","B16001_012","Italian:",NA,1,0
+"431","B16001","13","B16001_013","Speak English ""very well""",NA,1,0
+"432","B16001","14","B16001_014","Speak English less than ""very well""",NA,1,0
+"433","B16001","15","B16001_015","Portuguese:",NA,1,0
+"434","B16001","16","B16001_016","Speak English ""very well""",NA,1,0
+"435","B16001","17","B16001_017","Speak English less than ""very well""",NA,1,0
+"436","B16001","18","B16001_018","German:",NA,1,0
+"437","B16001","19","B16001_019","Speak English ""very well""",NA,1,0
+"438","B16001","20","B16001_020","Speak English less than ""very well""",NA,1,0
+"439","B16001","21","B16001_021","Yiddish, Pennsylvania Dutch or other West Germanic languages:",NA,1,0
+"440","B16001","22","B16001_022","Speak English ""very well""",NA,1,0
+"441","B16001","23","B16001_023","Speak English less than ""very well""",NA,1,0
+"442","B16001","24","B16001_024","Greek:",NA,1,0
+"443","B16001","25","B16001_025","Speak English ""very well""",NA,1,0
+"444","B16001","26","B16001_026","Speak English less than ""very well""",NA,1,0
+"445","B16001","27","B16001_027","Russian:",NA,1,0
+"446","B16001","28","B16001_028","Speak English ""very well""",NA,1,0
+"447","B16001","29","B16001_029","Speak English less than ""very well""",NA,1,0
+"448","B16001","30","B16001_030","Polish:",NA,1,0
+"449","B16001","31","B16001_031","Speak English ""very well""",NA,1,0
+"450","B16001","32","B16001_032","Speak English less than ""very well""",NA,1,0
+"451","B16001","33","B16001_033","Serbo-Croatian:",NA,1,0
+"452","B16001","34","B16001_034","Speak English ""very well""",NA,1,0
+"453","B16001","35","B16001_035","Speak English less than ""very well""",NA,1,0
+"454","B16001","36","B16001_036","Ukrainian or other Slavic languages:",NA,1,0
+"455","B16001","37","B16001_037","Speak English ""very well""",NA,1,0
+"456","B16001","38","B16001_038","Speak English less than ""very well""",NA,1,0
+"457","B16001","39","B16001_039","Armenian:",NA,1,0
+"458","B16001","40","B16001_040","Speak English ""very well""",NA,1,0
+"459","B16001","41","B16001_041","Speak English less than ""very well""",NA,1,0
+"460","B16001","42","B16001_042","Persian (incl. Farsi, Dari):",NA,1,0
+"461","B16001","43","B16001_043","Speak English ""very well""",NA,1,0
+"462","B16001","44","B16001_044","Speak English less than ""very well""",NA,1,0
+"463","B16001","45","B16001_045","Gujarati:",NA,1,0
+"464","B16001","46","B16001_046","Speak English ""very well""",NA,1,0
+"465","B16001","47","B16001_047","Speak English less than ""very well""",NA,1,0
+"466","B16001","48","B16001_048","Hindi:",NA,1,0
+"467","B16001","49","B16001_049","Speak English ""very well""",NA,1,0
+"468","B16001","50","B16001_050","Speak English less than ""very well""",NA,1,0
+"469","B16001","51","B16001_051","Urdu:",NA,1,0
+"470","B16001","52","B16001_052","Speak English ""very well""",NA,1,0
+"471","B16001","53","B16001_053","Speak English less than ""very well""",NA,1,0
+"472","B16001","54","B16001_054","Punjabi:",NA,1,0
+"473","B16001","55","B16001_055","Speak English ""very well""",NA,1,0
+"474","B16001","56","B16001_056","Speak English less than ""very well""",NA,1,0
+"475","B16001","57","B16001_057","Bengali:",NA,1,0
+"476","B16001","58","B16001_058","Speak English ""very well""",NA,1,0
+"477","B16001","59","B16001_059","Speak English less than ""very well""",NA,1,0
+"478","B16001","60","B16001_060","Nepali, Marathi, or other Indic languages:",NA,1,0
+"479","B16001","61","B16001_061","Speak English ""very well""",NA,1,0
+"480","B16001","62","B16001_062","Speak English less than ""very well""",NA,1,0
+"481","B16001","63","B16001_063","Other Indo-European languages:",NA,1,0
+"482","B16001","64","B16001_064","Speak English ""very well""",NA,1,0
+"483","B16001","65","B16001_065","Speak English less than ""very well""",NA,1,0
+"484","B16001","66","B16001_066","Telugu:",NA,1,0
+"485","B16001","67","B16001_067","Speak English ""very well""",NA,1,0
+"486","B16001","68","B16001_068","Speak English less than ""very well""",NA,1,0
+"487","B16001","69","B16001_069","Tamil:",NA,1,0
+"488","B16001","70","B16001_070","Speak English ""very well""",NA,1,0
+"489","B16001","71","B16001_071","Speak English less than ""very well""",NA,1,0
+"490","B16001","72","B16001_072","Malayalam, Kannada, or other Dravidian languages:",NA,1,0
+"491","B16001","73","B16001_073","Speak English ""very well""",NA,1,0
+"492","B16001","74","B16001_074","Speak English less than ""very well""",NA,1,0
+"493","B16001","75","B16001_075","Chinese (incl. Mandarin, Cantonese):",NA,1,0
+"494","B16001","76","B16001_076","Speak English ""very well""",NA,1,0
+"495","B16001","77","B16001_077","Speak English less than ""very well""",NA,1,0
+"496","B16001","78","B16001_078","Japanese:",NA,1,0
+"497","B16001","79","B16001_079","Speak English ""very well""",NA,1,0
+"498","B16001","80","B16001_080","Speak English less than ""very well""",NA,1,0
+"499","B16001","81","B16001_081","Korean:",NA,1,0
+"500","B16001","82","B16001_082","Speak English ""very well""",NA,1,0
+"501","B16001","83","B16001_083","Speak English less than ""very well""",NA,1,0
+"502","B16001","84","B16001_084","Hmong:",NA,1,0
+"503","B16001","85","B16001_085","Speak English ""very well""",NA,1,0
+"504","B16001","86","B16001_086","Speak English less than ""very well""",NA,1,0
+"505","B16001","87","B16001_087","Vietnamese:",NA,1,0
+"506","B16001","88","B16001_088","Speak English ""very well""",NA,1,0
+"507","B16001","89","B16001_089","Speak English less than ""very well""",NA,1,0
+"508","B16001","90","B16001_090","Khmer:",NA,1,0
+"509","B16001","91","B16001_091","Speak English ""very well""",NA,1,0
+"510","B16001","92","B16001_092","Speak English less than ""very well""",NA,1,0
+"511","B16001","93","B16001_093","Thai, Lao, or other Tai-Kadai languages:",NA,1,0
+"512","B16001","94","B16001_094","Speak English ""very well""",NA,1,0
+"513","B16001","95","B16001_095","Speak English less than ""very well""",NA,1,0
+"514","B16001","96","B16001_096","Other languages of Asia:",NA,1,0
+"515","B16001","97","B16001_097","Speak English ""very well""",NA,1,0
+"516","B16001","98","B16001_098","Speak English less than ""very well""",NA,1,0
+"517","B16001","99","B16001_099","Tagalog (incl. Filipino):",NA,1,0
+"518","B16001","100","B16001_100","Speak English ""very well""",NA,1,0
+"519","B16001","101","B16001_101","Speak English less than ""very well""",NA,1,0
+"520","B16001","102","B16001_102","Ilocano, Samoan, Hawaiian, or other Austronesian languages:",NA,1,0
+"521","B16001","103","B16001_103","Speak English ""very well""",NA,1,0
+"522","B16001","104","B16001_104","Speak English less than ""very well""",NA,1,0
+"523","B16001","105","B16001_105","Arabic:",NA,1,0
+"524","B16001","106","B16001_106","Speak English ""very well""",NA,1,0
+"525","B16001","107","B16001_107","Speak English less than ""very well""",NA,1,0
+"526","B16001","108","B16001_108","Hebrew:",NA,1,0
+"527","B16001","109","B16001_109","Speak English ""very well""",NA,1,0
+"528","B16001","110","B16001_110","Speak English less than ""very well""",NA,1,0
+"529","B16001","111","B16001_111","Amharic, Somali, or other Afro-Asiatic languages:",NA,1,0
+"530","B16001","112","B16001_112","Speak English ""very well""",NA,1,0
+"531","B16001","113","B16001_113","Speak English less than ""very well""",NA,1,0
+"532","B16001","114","B16001_114","Yoruba, Twi, Igbo, or other languages of Western Africa:",NA,1,0
+"533","B16001","115","B16001_115","Speak English ""very well""",NA,1,0
+"534","B16001","116","B16001_116","Speak English less than ""very well""",NA,1,0
+"535","B16001","117","B16001_117","Swahili or other languages of Central, Eastern, and Southern Africa:",NA,1,0
+"536","B16001","118","B16001_118","Speak English ""very well""",NA,1,0
+"537","B16001","119","B16001_119","Speak English less than ""very well""",NA,1,0
+"538","B16001","120","B16001_120","Navajo:",NA,1,0
+"539","B16001","121","B16001_121","Speak English ""very well""",NA,1,0
+"540","B16001","122","B16001_122","Speak English less than ""very well""",NA,1,0
+"541","B16001","123","B16001_123","Other Native languages of North America:",NA,1,0
+"542","B16001","124","B16001_124","Speak English ""very well""",NA,1,0
+"543","B16001","125","B16001_125","Speak English less than ""very well""",NA,1,0
+"544","B16001","126","B16001_126","Other and unspecified languages:",NA,1,0
+"545","B16001","127","B16001_127","Speak English ""very well""",NA,1,0
+"546","B16001","128","B16001_128","Speak English less than ""very well""",NA,1,0
+"547","B16004",NA,NA,"AGE BY LANGUAGE SPOKEN AT HOME BY ABILITY TO SPEAK ENGLISH FOR THE POPULATION 5 YEARS AND OVER","1,5",0,0
+"548","B16004",NA,NA,"Universe:  Population 5 years and over",NA,0,0
+"549","B16004","1","B16004_001","Total:",NA,0,0
+"550","B16004","2","B16004_002","5 to 17 years:",NA,0,0
+"551","B16004","3","B16004_003","Speak only English",NA,0,0
+"552","B16004","4","B16004_004","Speak Spanish:",NA,0,0
+"553","B16004","5","B16004_005","Speak English ""very well""",NA,0,0
+"554","B16004","6","B16004_006","Speak English ""well""",NA,0,0
+"555","B16004","7","B16004_007","Speak English ""not well""",NA,0,0
+"556","B16004","8","B16004_008","Speak English ""not at all""",NA,0,0
+"557","B16004","9","B16004_009","Speak other Indo-European languages:",NA,0,0
+"558","B16004","10","B16004_010","Speak English ""very well""",NA,0,0
+"559","B16004","11","B16004_011","Speak English ""well""",NA,0,0
+"560","B16004","12","B16004_012","Speak English ""not well""",NA,0,0
+"561","B16004","13","B16004_013","Speak English ""not at all""",NA,0,0
+"562","B16004","14","B16004_014","Speak Asian and Pacific Island languages:",NA,0,0
+"563","B16004","15","B16004_015","Speak English ""very well""",NA,0,0
+"564","B16004","16","B16004_016","Speak English ""well""",NA,0,0
+"565","B16004","17","B16004_017","Speak English ""not well""",NA,0,0
+"566","B16004","18","B16004_018","Speak English ""not at all""",NA,0,0
+"567","B16004","19","B16004_019","Speak other languages:",NA,0,0
+"568","B16004","20","B16004_020","Speak English ""very well""",NA,0,0
+"569","B16004","21","B16004_021","Speak English ""well""",NA,0,0
+"570","B16004","22","B16004_022","Speak English ""not well""",NA,0,0
+"571","B16004","23","B16004_023","Speak English ""not at all""",NA,0,0
+"572","B16004","24","B16004_024","18 to 64 years:",NA,0,0
+"573","B16004","25","B16004_025","Speak only English",NA,0,0
+"574","B16004","26","B16004_026","Speak Spanish:",NA,0,0
+"575","B16004","27","B16004_027","Speak English ""very well""",NA,0,0
+"576","B16004","28","B16004_028","Speak English ""well""",NA,0,0
+"577","B16004","29","B16004_029","Speak English ""not well""",NA,0,0
+"578","B16004","30","B16004_030","Speak English ""not at all""",NA,0,0
+"579","B16004","31","B16004_031","Speak other Indo-European languages:",NA,0,0
+"580","B16004","32","B16004_032","Speak English ""very well""",NA,0,0
+"581","B16004","33","B16004_033","Speak English ""well""",NA,0,0
+"582","B16004","34","B16004_034","Speak English ""not well""",NA,0,0
+"583","B16004","35","B16004_035","Speak English ""not at all""",NA,0,0
+"584","B16004","36","B16004_036","Speak Asian and Pacific Island languages:",NA,0,0
+"585","B16004","37","B16004_037","Speak English ""very well""",NA,0,0
+"586","B16004","38","B16004_038","Speak English ""well""",NA,0,0
+"587","B16004","39","B16004_039","Speak English ""not well""",NA,0,0
+"588","B16004","40","B16004_040","Speak English ""not at all""",NA,0,0
+"589","B16004","41","B16004_041","Speak other languages:",NA,0,0
+"590","B16004","42","B16004_042","Speak English ""very well""",NA,0,0
+"591","B16004","43","B16004_043","Speak English ""well""",NA,0,0
+"592","B16004","44","B16004_044","Speak English ""not well""",NA,0,0
+"593","B16004","45","B16004_045","Speak English ""not at all""",NA,0,0
+"594","B16004","46","B16004_046","65 years and over:",NA,0,0
+"595","B16004","47","B16004_047","Speak only English",NA,0,0
+"596","B16004","48","B16004_048","Speak Spanish:",NA,0,0
+"597","B16004","49","B16004_049","Speak English ""very well""",NA,0,0
+"598","B16004","50","B16004_050","Speak English ""well""",NA,0,0
+"599","B16004","51","B16004_051","Speak English ""not well""",NA,0,0
+"600","B16004","52","B16004_052","Speak English ""not at all""",NA,0,0
+"601","B16004","53","B16004_053","Speak other Indo-European languages:",NA,0,0
+"602","B16004","54","B16004_054","Speak English ""very well""",NA,0,0
+"603","B16004","55","B16004_055","Speak English ""well""",NA,0,0
+"604","B16004","56","B16004_056","Speak English ""not well""",NA,0,0
+"605","B16004","57","B16004_057","Speak English ""not at all""",NA,0,0
+"606","B16004","58","B16004_058","Speak Asian and Pacific Island languages:",NA,0,0
+"607","B16004","59","B16004_059","Speak English ""very well""",NA,0,0
+"608","B16004","60","B16004_060","Speak English ""well""",NA,0,0
+"609","B16004","61","B16004_061","Speak English ""not well""",NA,0,0
+"610","B16004","62","B16004_062","Speak English ""not at all""",NA,0,0
+"611","B16004","63","B16004_063","Speak other languages:",NA,0,0
+"612","B16004","64","B16004_064","Speak English ""very well""",NA,0,0
+"613","B16004","65","B16004_065","Speak English ""well""",NA,0,0
+"614","B16004","66","B16004_066","Speak English ""not well""",NA,0,0
+"615","B16004","67","B16004_067","Speak English ""not at all""",NA,0,0
+"616","C17002",NA,NA,"RATIO OF INCOME TO POVERTY LEVEL IN THE PAST 12 MONTHS","1,5",0,0
+"617","C17002",NA,NA,"Universe:  Population for whom poverty status is determined",NA,0,0
+"618","C17002","1","C17002_001","Total:",NA,0,0
+"619","C17002","2","C17002_002","Under .50",NA,0,0
+"620","C17002","3","C17002_003",".50 to .99",NA,0,0
+"621","C17002","4","C17002_004","1.00 to 1.24",NA,0,0
+"622","C17002","5","C17002_005","1.25 to 1.49",NA,0,0
+"623","C17002","6","C17002_006","1.50 to 1.84",NA,0,0
+"624","C17002","7","C17002_007","1.85 to 1.99",NA,0,0
+"625","C17002","8","C17002_008","2.00 and over",NA,0,0
+"626","B19001",NA,NA,"HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2019 INFLATION-ADJUSTED DOLLARS)","1,5",1,0
+"627","B19001",NA,NA,"Universe:  Households",NA,1,0
+"628","B19001","1","B19001_001","Total:",NA,1,0
+"629","B19001","2","B19001_002","Less than $10,000",NA,1,1
+"630","B19001","3","B19001_003","$10,000 to $14,999",NA,1,1
+"631","B19001","4","B19001_004","$15,000 to $19,999",NA,1,1
+"632","B19001","5","B19001_005","$20,000 to $24,999",NA,1,1
+"633","B19001","6","B19001_006","$25,000 to $29,999",NA,1,1
+"634","B19001","7","B19001_007","$30,000 to $34,999",NA,1,1
+"635","B19001","8","B19001_008","$35,000 to $39,999",NA,1,1
+"636","B19001","9","B19001_009","$40,000 to $44,999",NA,1,1
+"637","B19001","10","B19001_010","$45,000 to $49,999",NA,1,1
+"638","B19001","11","B19001_011","$50,000 to $59,999",NA,1,1
+"639","B19001","12","B19001_012","$60,000 to $74,999",NA,1,1
+"640","B19001","13","B19001_013","$75,000 to $99,999",NA,1,1
+"641","B19001","14","B19001_014","$100,000 to $124,999",NA,1,1
+"642","B19001","15","B19001_015","$125,000 to $149,999",NA,1,1
+"643","B19001","16","B19001_016","$150,000 to $199,999",NA,1,1
+"644","B19001","17","B19001_017","$200,000 or more",NA,1,1
+"645","B19058",NA,NA,"PUBLIC ASSISTANCE INCOME OR FOOD STAMPS/SNAP IN THE PAST 12 MONTHS FOR HOUSEHOLDS","1,5",1,0
+"646","B19058",NA,NA,"Universe:  Households",NA,1,0
+"647","B19058","1","B19058_001","Total:",NA,1,0
+"648","B19058","2","B19058_002","With cash public assistance or Food Stamps/SNAP",NA,1,1
+"649","B19058","3","B19058_003","No cash public assistance or Food Stamps/SNAP",NA,1,0
+"650","B19059",NA,NA,"RETIREMENT INCOME IN THE PAST 12 MONTHS FOR HOUSEHOLDS","1,5",1,0
+"651","B19059",NA,NA,"Universe:  Households",NA,1,0
+"652","B19059","1","B19059_001","Total:",NA,1,0
+"653","B19059","2","B19059_002","With retirement income",NA,1,1
+"654","B19059","3","B19059_003","No retirement income",NA,1,0
+"655","B22010",NA,NA,"RECEIPT OF FOOD STAMPS/SNAP IN THE PAST 12 MONTHS BY DISABILITY STATUS FOR HOUSEHOLDS","1,5",0,0
+"656","B22010",NA,NA,"Universe:  Households",NA,0,0
+"657","B22010","1","B22010_001","Total:",NA,0,0
+"658","B22010","2","B22010_002","Household received Food Stamps/SNAP in the past 12 months:",NA,0,0
+"659","B22010","3","B22010_003","Households with 1 or more persons with a disability",NA,0,0
+"660","B22010","4","B22010_004","Households with no persons with a disability",NA,0,0
+"661","B22010","5","B22010_005","Household did not receive Food Stamps/SNAP in the past 12 months:",NA,0,0
+"662","B22010","6","B22010_006","Households with 1 or more persons with a disability",NA,0,0
+"663","B22010","7","B22010_007","Households with no persons with a disability",NA,0,0
+"664","B23024",NA,NA,"POVERTY STATUS IN THE PAST 12 MONTHS BY DISABILITY STATUS BY EMPLOYMENT STATUS FOR THE POPULATION 20 TO 64 YEARS","1,5",0,0
+"665","B23024",NA,NA,"Universe:  Population 20 to 64 years for whom poverty status is determined",NA,0,0
+"666","B23024","1","B23024_001","Total:",NA,0,0
+"667","B23024","2","B23024_002","Income in the past 12 months below poverty level:",NA,0,0
+"668","B23024","3","B23024_003","With a disability:",NA,0,0
+"669","B23024","4","B23024_004","In labor force:",NA,0,0
+"670","B23024","5","B23024_005","In Armed Forces",NA,0,0
+"671","B23024","6","B23024_006","Civilian:",NA,0,0
+"672","B23024","7","B23024_007","Employed",NA,0,0
+"673","B23024","8","B23024_008","Unemployed",NA,0,0
+"674","B23024","9","B23024_009","Not in labor force",NA,0,0
+"675","B23024","10","B23024_010","No disability:",NA,0,0
+"676","B23024","11","B23024_011","In labor force:",NA,0,0
+"677","B23024","12","B23024_012","In Armed Forces",NA,0,0
+"678","B23024","13","B23024_013","Civilian:",NA,0,0
+"679","B23024","14","B23024_014","Employed",NA,0,0
+"680","B23024","15","B23024_015","Unemployed",NA,0,0
+"681","B23024","16","B23024_016","Not in labor force",NA,0,0
+"682","B23024","17","B23024_017","Income in the past 12 months at or above poverty level:",NA,0,0
+"683","B23024","18","B23024_018","With a disability:",NA,0,0
+"684","B23024","19","B23024_019","In labor force:",NA,0,0
+"685","B23024","20","B23024_020","In Armed Forces",NA,0,0
+"686","B23024","21","B23024_021","Civilian:",NA,0,0
+"687","B23024","22","B23024_022","Employed",NA,0,0
+"688","B23024","23","B23024_023","Unemployed",NA,0,0
+"689","B23024","24","B23024_024","Not in labor force",NA,0,0
+"690","B23024","25","B23024_025","No disability:",NA,0,0
+"691","B23024","26","B23024_026","In labor force:",NA,0,0
+"692","B23024","27","B23024_027","In Armed Forces",NA,0,0
+"693","B23024","28","B23024_028","Civilian:",NA,0,0
+"694","B23024","29","B23024_029","Employed",NA,0,0
+"695","B23024","30","B23024_030","Unemployed",NA,0,0
+"696","B23024","31","B23024_031","Not in labor force",NA,0,0
+"697","C24030",NA,NA,"SEX BY INDUSTRY FOR THE CIVILIAN EMPLOYED POPULATION 16 YEARS AND OVER","1,5",0,0
+"698","C24030",NA,NA,"Universe:  Civilian employed population 16 years and over",NA,0,0
+"699","C24030","1","C24030_001","Total:",NA,0,0
+"700","C24030","2","C24030_002","Male:",NA,0,0
+"701","C24030","3","C24030_003","Agriculture, forestry, fishing and hunting, and mining:",NA,0,0
+"702","C24030","4","C24030_004","Agriculture, forestry, fishing and hunting",NA,0,0
+"703","C24030","5","C24030_005","Mining, quarrying, and oil and gas extraction",NA,0,0
+"704","C24030","6","C24030_006","Construction",NA,0,0
+"705","C24030","7","C24030_007","Manufacturing",NA,0,0
+"706","C24030","8","C24030_008","Wholesale trade",NA,0,0
+"707","C24030","9","C24030_009","Retail trade",NA,0,0
+"708","C24030","10","C24030_010","Transportation and warehousing, and utilities:",NA,0,0
+"709","C24030","11","C24030_011","Transportation and warehousing",NA,0,0
+"710","C24030","12","C24030_012","Utilities",NA,0,0
+"711","C24030","13","C24030_013","Information",NA,0,0
+"712","C24030","14","C24030_014","Finance and insurance, and real estate, and rental and leasing:",NA,0,0
+"713","C24030","15","C24030_015","Finance and insurance",NA,0,0
+"714","C24030","16","C24030_016","Real estate and rental and leasing",NA,0,0
+"715","C24030","17","C24030_017","Professional, scientific, and management, and administrative, and waste management services:",NA,0,0
+"716","C24030","18","C24030_018","Professional, scientific, and technical services",NA,0,0
+"717","C24030","19","C24030_019","Management of companies and enterprises",NA,0,0
+"718","C24030","20","C24030_020","Administrative and support and waste management services",NA,0,0
+"719","C24030","21","C24030_021","Educational services, and health care and social assistance:",NA,0,0
+"720","C24030","22","C24030_022","Educational services",NA,0,0
+"721","C24030","23","C24030_023","Health care and social assistance",NA,0,0
+"722","C24030","24","C24030_024","Arts, entertainment, and recreation, and accommodation and food services:",NA,0,0
+"723","C24030","25","C24030_025","Arts, entertainment, and recreation",NA,0,0
+"724","C24030","26","C24030_026","Accommodation and food services",NA,0,0
+"725","C24030","27","C24030_027","Other services, except public administration",NA,0,0
+"726","C24030","28","C24030_028","Public administration",NA,0,0
+"727","C24030","29","C24030_029","Female:",NA,0,0
+"728","C24030","30","C24030_030","Agriculture, forestry, fishing and hunting, and mining:",NA,0,0
+"729","C24030","31","C24030_031","Agriculture, forestry, fishing and hunting",NA,0,0
+"730","C24030","32","C24030_032","Mining, quarrying, and oil and gas extraction",NA,0,0
+"731","C24030","33","C24030_033","Construction",NA,0,0
+"732","C24030","34","C24030_034","Manufacturing",NA,0,0
+"733","C24030","35","C24030_035","Wholesale trade",NA,0,0
+"734","C24030","36","C24030_036","Retail trade",NA,0,0
+"735","C24030","37","C24030_037","Transportation and warehousing, and utilities:",NA,0,0
+"736","C24030","38","C24030_038","Transportation and warehousing",NA,0,0
+"737","C24030","39","C24030_039","Utilities",NA,0,0
+"738","C24030","40","C24030_040","Information",NA,0,0
+"739","C24030","41","C24030_041","Finance and insurance, and real estate, and rental and leasing:",NA,0,0
+"740","C24030","42","C24030_042","Finance and insurance",NA,0,0
+"741","C24030","43","C24030_043","Real estate and rental and leasing",NA,0,0
+"742","C24030","44","C24030_044","Professional, scientific, and management, and administrative, and waste management services:",NA,0,0
+"743","C24030","45","C24030_045","Professional, scientific, and technical services",NA,0,0
+"744","C24030","46","C24030_046","Management of companies and enterprises",NA,0,0
+"745","C24030","47","C24030_047","Administrative and support and waste management services",NA,0,0
+"746","C24030","48","C24030_048","Educational services, and health care and social assistance:",NA,0,0
+"747","C24030","49","C24030_049","Educational services",NA,0,0
+"748","C24030","50","C24030_050","Health care and social assistance",NA,0,0
+"749","C24030","51","C24030_051","Arts, entertainment, and recreation, and accommodation and food services:",NA,0,0
+"750","C24030","52","C24030_052","Arts, entertainment, and recreation",NA,0,0
+"751","C24030","53","C24030_053","Accommodation and food services",NA,0,0
+"752","C24030","54","C24030_054","Other services, except public administration",NA,0,0
+"753","C24030","55","C24030_055","Public administration",NA,0,0
+"754","B25001",NA,NA,"HOUSING UNITS","1,5",0,0
+"755","B25001",NA,NA,"Universe:  Housing units",NA,0,0
+"756","B25001","1","B25001_001","Total",NA,0,0
+"757","B25002",NA,NA,"OCCUPANCY STATUS","1,5",1,0
+"758","B25002",NA,NA,"Universe:  Housing units",NA,1,0
+"759","B25002","1","B25002_001","Total:",NA,1,0
+"760","B25002","2","B25002_002","Occupied",NA,1,0
+"761","B25002","3","B25002_003","Vacant",NA,1,1
+"762","B25003",NA,NA,"TENURE","1,5",1,0
+"763","B25003",NA,NA,"Universe:  Occupied housing units",NA,1,0
+"764","B25003","1","B25003_001","Total:",NA,1,0
+"765","B25003","2","B25003_002","Owner occupied",NA,1,0
+"766","B25003","3","B25003_003","Renter occupied",NA,1,1
+"767","B25004",NA,NA,"VACANCY STATUS","1,5",0,0
+"768","B25004",NA,NA,"Universe:  Vacant housing units",NA,0,0
+"769","B25004","1","B25004_001","Total:",NA,0,0
+"770","B25004","2","B25004_002","For rent",NA,0,0
+"771","B25004","3","B25004_003","Rented, not occupied",NA,0,0
+"772","B25004","4","B25004_004","For sale only",NA,0,0
+"773","B25004","5","B25004_005","Sold, not occupied",NA,0,0
+"774","B25004","6","B25004_006","For seasonal, recreational, or occasional use",NA,0,0
+"775","B25004","7","B25004_007","For migrant workers",NA,0,0
+"776","B25004","8","B25004_008","Other vacant",NA,0,0
+"777","B25017",NA,NA,"ROOMS","1,5",0,0
+"778","B25017",NA,NA,"Universe:  Housing units",NA,0,0
+"779","B25017","1","B25017_001","Total:",NA,0,0
+"780","B25017","2","B25017_002","1 room",NA,0,0
+"781","B25017","3","B25017_003","2 rooms",NA,0,0
+"782","B25017","4","B25017_004","3 rooms",NA,0,0
+"783","B25017","5","B25017_005","4 rooms",NA,0,0
+"784","B25017","6","B25017_006","5 rooms",NA,0,0
+"785","B25017","7","B25017_007","6 rooms",NA,0,0
+"786","B25017","8","B25017_008","7 rooms",NA,0,0
+"787","B25017","9","B25017_009","8 rooms",NA,0,0
+"788","B25017","10","B25017_010","9 or more rooms",NA,0,0
+"789","B25018",NA,NA,"MEDIAN NUMBER OF ROOMS","1,5",0,0
+"790","B25018",NA,NA,"Universe:  Housing units",NA,0,0
+"791","B25018","1","B25018_001","Median number of rooms",NA,0,0
+"792","B25024",NA,NA,"UNITS IN STRUCTURE","1,5",1,0
+"793","B25024",NA,NA,"Universe:  Housing units",NA,1,0
+"794","B25024","1","B25024_001","Total:",NA,1,0
+"795","B25024","2","B25024_002","1, detached",NA,1,1
+"796","B25024","3","B25024_003","1, attached",NA,1,1
+"797","B25024","4","B25024_004","2",NA,1,1
+"798","B25024","5","B25024_005","3 or 4",NA,1,1
+"799","B25024","6","B25024_006","5 to 9",NA,1,1
+"800","B25024","7","B25024_007","10 to 19",NA,1,1
+"801","B25024","8","B25024_008","20 to 49",NA,1,1
+"802","B25024","9","B25024_009","50 or more",NA,1,1
+"803","B25024","10","B25024_010","Mobile home",NA,1,1
+"804","B25024","11","B25024_011","Boat, RV, van, etc.",NA,1,0
+"805","B25034",NA,NA,"YEAR STRUCTURE BUILT","1,5",1,0
+"806","B25034",NA,NA,"Universe:  Housing units",NA,1,0
+"807","B25034","1","B25034_001","Total:",NA,1,0
+"808","B25034","2","B25034_002","Built 2014 or later",NA,1,1
+"809","B25034","3","B25034_003","Built 2010 to 2013",NA,1,1
+"810","B25034","4","B25034_004","Built 2000 to 2009",NA,1,0
+"811","B25034","5","B25034_005","Built 1990 to 1999",NA,1,0
+"812","B25034","6","B25034_006","Built 1980 to 1989",NA,1,0
+"813","B25034","7","B25034_007","Built 1970 to 1979",NA,1,0
+"814","B25034","8","B25034_008","Built 1960 to 1969",NA,1,0
+"815","B25034","9","B25034_009","Built 1950 to 1959",NA,1,0
+"816","B25034","10","B25034_010","Built 1940 to 1949",NA,1,1
+"817","B25034","11","B25034_011","Built 1939 or earlier",NA,1,0
+"818","B25041",NA,NA,"BEDROOMS","1,5",0,0
+"819","B25041",NA,NA,"Universe:  Housing units",NA,0,0
+"820","B25041","1","B25041_001","Total:",NA,0,0
+"821","B25041","2","B25041_002","No bedroom",NA,0,0
+"822","B25041","3","B25041_003","1 bedroom",NA,0,0
+"823","B25041","4","B25041_004","2 bedrooms",NA,0,0
+"824","B25041","5","B25041_005","3 bedrooms",NA,0,0
+"825","B25041","6","B25041_006","4 bedrooms",NA,0,0
+"826","B25041","7","B25041_007","5 or more bedrooms",NA,0,0
+"827","B25056",NA,NA,"CONTRACT RENT","1,5",0,0
+"828","B25056",NA,NA,"Universe:  Renter-occupied housing units",NA,0,0
+"829","B25056","1","B25056_001","Total:",NA,0,0
+"830","B25056","2","B25056_002","With cash rent:",NA,0,0
+"831","B25056","3","B25056_003","Less than $100",NA,0,0
+"832","B25056","4","B25056_004","$100 to $149",NA,0,0
+"833","B25056","5","B25056_005","$150 to $199",NA,0,0
+"834","B25056","6","B25056_006","$200 to $249",NA,0,0
+"835","B25056","7","B25056_007","$250 to $299",NA,0,0
+"836","B25056","8","B25056_008","$300 to $349",NA,0,0
+"837","B25056","9","B25056_009","$350 to $399",NA,0,0
+"838","B25056","10","B25056_010","$400 to $449",NA,0,0
+"839","B25056","11","B25056_011","$450 to $499",NA,0,0
+"840","B25056","12","B25056_012","$500 to $549",NA,0,0
+"841","B25056","13","B25056_013","$550 to $599",NA,0,0
+"842","B25056","14","B25056_014","$600 to $649",NA,0,0
+"843","B25056","15","B25056_015","$650 to $699",NA,0,0
+"844","B25056","16","B25056_016","$700 to $749",NA,0,0
+"845","B25056","17","B25056_017","$750 to $799",NA,0,0
+"846","B25056","18","B25056_018","$800 to $899",NA,0,0
+"847","B25056","19","B25056_019","$900 to $999",NA,0,0
+"848","B25056","20","B25056_020","$1,000 to $1,249",NA,0,0
+"849","B25056","21","B25056_021","$1,250 to $1,499",NA,0,0
+"850","B25056","22","B25056_022","$1,500 to $1,999",NA,0,0
+"851","B25056","23","B25056_023","$2,000 to $2,499",NA,0,0
+"852","B25056","24","B25056_024","$2,500 to $2,999",NA,0,0
+"853","B25056","25","B25056_025","$3,000 to $3,499",NA,0,0
+"854","B25056","26","B25056_026","$3,500 or more",NA,0,0
+"855","B25056","27","B25056_027","No cash rent",NA,0,0
+"856","B25064",NA,NA,"MEDIAN GROSS RENT (DOLLARS)","1,5",1,0
+"857","B25064",NA,NA,"Universe:  Renter-occupied housing units paying cash rent",NA,1,0
+"858","B25064","1","B25064_001","Median gross rent",NA,1,1
+"859","B25068",NA,NA,"BEDROOMS BY GROSS RENT","1,5",0,0
+"860","B25068",NA,NA,"Universe:  Renter-occupied housing units",NA,0,0
+"861","B25068","1","B25068_001","Total:",NA,0,0
+"862","B25068","2","B25068_002","No bedroom:",NA,0,0
+"863","B25068","3","B25068_003","With cash rent:",NA,0,0
+"864","B25068","4","B25068_004","Less than $300",NA,0,0
+"865","B25068","5","B25068_005","$300 to $499",NA,0,0
+"866","B25068","6","B25068_006","$500 to $749",NA,0,0
+"867","B25068","7","B25068_007","$750 to $999",NA,0,0
+"868","B25068","8","B25068_008","$1,000 to $1,499",NA,0,0
+"869","B25068","9","B25068_009","$1,500 or more",NA,0,0
+"870","B25068","10","B25068_010","No cash rent",NA,0,0
+"871","B25068","11","B25068_011","1 bedroom:",NA,0,0
+"872","B25068","12","B25068_012","With cash rent:",NA,0,0
+"873","B25068","13","B25068_013","Less than $300",NA,0,0
+"874","B25068","14","B25068_014","$300 to $499",NA,0,0
+"875","B25068","15","B25068_015","$500 to $749",NA,0,0
+"876","B25068","16","B25068_016","$750 to $999",NA,0,0
+"877","B25068","17","B25068_017","$1,000 to $1,499",NA,0,0
+"878","B25068","18","B25068_018","$1,500 or more",NA,0,0
+"879","B25068","19","B25068_019","No cash rent",NA,0,0
+"880","B25068","20","B25068_020","2 bedrooms:",NA,0,0
+"881","B25068","21","B25068_021","With cash rent:",NA,0,0
+"882","B25068","22","B25068_022","Less than $300",NA,0,0
+"883","B25068","23","B25068_023","$300 to $499",NA,0,0
+"884","B25068","24","B25068_024","$500 to $749",NA,0,0
+"885","B25068","25","B25068_025","$750 to $999",NA,0,0
+"886","B25068","26","B25068_026","$1,000 to $1,499",NA,0,0
+"887","B25068","27","B25068_027","$1,500 or more",NA,0,0
+"888","B25068","28","B25068_028","No cash rent",NA,0,0
+"889","B25068","29","B25068_029","3 or more bedrooms:",NA,0,0
+"890","B25068","30","B25068_030","With cash rent:",NA,0,0
+"891","B25068","31","B25068_031","Less than $300",NA,0,0
+"892","B25068","32","B25068_032","$300 to $499",NA,0,0
+"893","B25068","33","B25068_033","$500 to $749",NA,0,0
+"894","B25068","34","B25068_034","$750 to $999",NA,0,0
+"895","B25068","35","B25068_035","$1,000 to $1,499",NA,0,0
+"896","B25068","36","B25068_036","$1,500 or more",NA,0,0
+"897","B25068","37","B25068_037","No cash rent",NA,0,0
+"898","B25070",NA,NA,"GROSS RENT AS A PERCENTAGE OF HOUSEHOLD INCOME IN THE PAST 12 MONTHS","1,5",0,0
+"899","B25070",NA,NA,"Universe:  Renter-occupied housing units",NA,0,0
+"900","B25070","1","B25070_001","Total:",NA,0,0
+"901","B25070","2","B25070_002","Less than 10.0 percent",NA,0,0
+"902","B25070","3","B25070_003","10.0 to 14.9 percent",NA,0,0
+"903","B25070","4","B25070_004","15.0 to 19.9 percent",NA,0,0
+"904","B25070","5","B25070_005","20.0 to 24.9 percent",NA,0,0
+"905","B25070","6","B25070_006","25.0 to 29.9 percent",NA,0,0
+"906","B25070","7","B25070_007","30.0 to 34.9 percent",NA,0,0
+"907","B25070","8","B25070_008","35.0 to 39.9 percent",NA,0,0
+"908","B25070","9","B25070_009","40.0 to 49.9 percent",NA,0,0
+"909","B25070","10","B25070_010","50.0 percent or more",NA,0,0
+"910","B25070","11","B25070_011","Not computed",NA,0,0
+"911","B25076",NA,NA,"LOWER VALUE QUARTILE (DOLLARS)","1,5",1,0
+"912","B25076",NA,NA,"Universe:  Owner-occupied housing units",NA,1,0
+"913","B25076","1","B25076_001","Lower value quartile (dollars)",NA,1,1
+"914","B25077",NA,NA,"MEDIAN VALUE (DOLLARS)","1,5",1,0
+"915","B25077",NA,NA,"Universe:  Owner-occupied housing units",NA,1,0
+"916","B25077","1","B25077_001","Median value (dollars)",NA,1,1
+"917","B25078",NA,NA,"UPPER VALUE QUARTILE (DOLLARS)","1,5",1,0
+"918","B25078",NA,NA,"Universe:  Owner-occupied housing units",NA,1,0
+"919","B25078","1","B25078_001","Upper value quartile (dollars)",NA,1,1
+"920","B25085",NA,NA,"PRICE ASKED","1,5",0,0
+"921","B25085",NA,NA,"Universe:  Vacant-for-sale-only and sold, not occupied housing units",NA,0,0
+"922","B25085","1","B25085_001","Total:",NA,0,0
+"923","B25085","2","B25085_002","Less than $10,000",NA,0,0
+"924","B25085","3","B25085_003","$10,000 to $14,999",NA,0,0
+"925","B25085","4","B25085_004","$15,000 to $19,999",NA,0,0
+"926","B25085","5","B25085_005","$20,000 to $24,999",NA,0,0
+"927","B25085","6","B25085_006","$25,000 to $29,999",NA,0,0
+"928","B25085","7","B25085_007","$30,000 to $34,999",NA,0,0
+"929","B25085","8","B25085_008","$35,000 to $39,999",NA,0,0
+"930","B25085","9","B25085_009","$40,000 to $49,999",NA,0,0
+"931","B25085","10","B25085_010","$50,000 to $59,999",NA,0,0
+"932","B25085","11","B25085_011","$60,000 to $69,999",NA,0,0
+"933","B25085","12","B25085_012","$70,000 to $79,999",NA,0,0
+"934","B25085","13","B25085_013","$80,000 to $89,999",NA,0,0
+"935","B25085","14","B25085_014","$90,000 to $99,999",NA,0,0
+"936","B25085","15","B25085_015","$100,000 to $124,999",NA,0,0
+"937","B25085","16","B25085_016","$125,000 to $149,999",NA,0,0
+"938","B25085","17","B25085_017","$150,000 to $174,999",NA,0,0
+"939","B25085","18","B25085_018","$175,000 to $199,999",NA,0,0
+"940","B25085","19","B25085_019","$200,000 to $249,999",NA,0,0
+"941","B25085","20","B25085_020","$250,000 to $299,999",NA,0,0
+"942","B25085","21","B25085_021","$300,000 to $399,999",NA,0,0
+"943","B25085","22","B25085_022","$400,000 to $499,999",NA,0,0
+"944","B25085","23","B25085_023","$500,000 to $749,999",NA,0,0
+"945","B25085","24","B25085_024","$750,000 to $999,999",NA,0,0
+"946","B25085","25","B25085_025","$1,000,000 to $1,499,999",NA,0,0
+"947","B25085","26","B25085_026","$1,500,000 to $1,999,999",NA,0,0
+"948","B25085","27","B25085_027","$2,000,000 or more",NA,0,0
+"949","B25087",NA,NA,"MORTGAGE STATUS AND SELECTED MONTHLY OWNER COSTS","1,5",0,0
+"950","B25087",NA,NA,"Universe:  Owner-occupied housing units",NA,0,0
+"951","B25087","1","B25087_001","Total:",NA,0,0
+"952","B25087","2","B25087_002","Housing units with a mortgage:",NA,0,0
+"953","B25087","3","B25087_003","Less than $200",NA,0,0
+"954","B25087","4","B25087_004","$200 to $299",NA,0,0
+"955","B25087","5","B25087_005","$300 to $399",NA,0,0
+"956","B25087","6","B25087_006","$400 to $499",NA,0,0
+"957","B25087","7","B25087_007","$500 to $599",NA,0,0
+"958","B25087","8","B25087_008","$600 to $699",NA,0,0
+"959","B25087","9","B25087_009","$700 to $799",NA,0,0
+"960","B25087","10","B25087_010","$800 to $899",NA,0,0
+"961","B25087","11","B25087_011","$900 to $999",NA,0,0
+"962","B25087","12","B25087_012","$1,000 to $1,249",NA,0,0
+"963","B25087","13","B25087_013","$1,250 to $1,499",NA,0,0
+"964","B25087","14","B25087_014","$1,500 to $1,999",NA,0,0
+"965","B25087","15","B25087_015","$2,000 to $2,499",NA,0,0
+"966","B25087","16","B25087_016","$2,500 to $2,999",NA,0,0
+"967","B25087","17","B25087_017","$3,000 to $3,499",NA,0,0
+"968","B25087","18","B25087_018","$3,500 to $3,999",NA,0,0
+"969","B25087","19","B25087_019","$4,000 or more",NA,0,0
+"970","B25087","20","B25087_020","Housing units without a mortgage:",NA,0,0
+"971","B25087","21","B25087_021","Less than $100",NA,0,0
+"972","B25087","22","B25087_022","$100 to $149",NA,0,0
+"973","B25087","23","B25087_023","$150 to $199",NA,0,0
+"974","B25087","24","B25087_024","$200 to $249",NA,0,0
+"975","B25087","25","B25087_025","$250 to $299",NA,0,0
+"976","B25087","26","B25087_026","$300 to $349",NA,0,0
+"977","B25087","27","B25087_027","$350 to $399",NA,0,0
+"978","B25087","28","B25087_028","$400 to $499",NA,0,0
+"979","B25087","29","B25087_029","$500 to $599",NA,0,0
+"980","B25087","30","B25087_030","$600 to $699",NA,0,0
+"981","B25087","31","B25087_031","$700 to $799",NA,0,0
+"982","B25087","32","B25087_032","$800 to $899",NA,0,0
+"983","B25087","33","B25087_033","$900 to $999",NA,0,0
+"984","B25087","34","B25087_034","$1000 to $1,099",NA,0,0
+"985","B25087","35","B25087_035","$1100 to $1,199",NA,0,0
+"986","B25087","36","B25087_036","$1200 to $1,299",NA,0,0
+"987","B25087","37","B25087_037","$1300 to $1,399",NA,0,0
+"988","B25087","38","B25087_038","$1400 to $1,499",NA,0,0
+"989","B25087","39","B25087_039","$1,500 or more",NA,0,0
+"990","B25088",NA,NA,"MEDIAN SELECTED MONTHLY OWNER COSTS (DOLLARS) BY MORTGAGE STATUS","1,5",0,0
+"991","B25088",NA,NA,"Universe:  Owner-occupied housing units",NA,0,0
+"992","B25088","0.5",NA,"Median selected monthly owner costs (dollars) --",NA,0,0
+"993","B25088","1","B25088_001","Total:",NA,0,0
+"994","B25088","2","B25088_002","Housing units with a mortgage (dollars)",NA,0,0
+"995","B25088","3","B25088_003","Housing units without a mortgage (dollars)",NA,0,0
+"996","B28001",NA,NA,"TYPES OF COMPUTERS IN HOUSEHOLD","1,5",0,0
+"997","B28001",NA,NA,"Universe:  Households",NA,0,0
+"998","B28001","1","B28001_001","Total:",NA,0,0
+"999","B28001","2","B28001_002","Has one or more types of computing devices:",NA,0,0
+"1000","B28001","3","B28001_003","Desktop or laptop",NA,0,0
+"1001","B28001","4","B28001_004","Desktop or laptop with no other type of computing device",NA,0,0
+"1002","B28001","5","B28001_005","Smartphone",NA,0,0
+"1003","B28001","6","B28001_006","Smartphone with no other type of computing device",NA,0,0
+"1004","B28001","7","B28001_007","Tablet or other portable wireless computer",NA,0,0
+"1005","B28001","8","B28001_008","Tablet or other portable wireless computer with no other type of computing device",NA,0,0
+"1006","B28001","9","B28001_009","Other computer",NA,0,0
+"1007","B28001","10","B28001_010","Other computer with no other type of computing device",NA,0,0
+"1008","B28001","11","B28001_011","No Computer",NA,0,0
+"1009","B28002",NA,NA,"PRESENCE AND TYPES OF INTERNET SUBSCRIPTIONS IN HOUSEHOLD","1,5",0,0
+"1010","B28002",NA,NA,"Universe:  Households",NA,0,0
+"1011","B28002","1","B28002_001","Total:",NA,0,0
+"1012","B28002","2","B28002_002","With an Internet subscription",NA,0,0
+"1013","B28002","3","B28002_003","Dial-up with no other type of Internet subscription",NA,0,0
+"1014","B28002","4","B28002_004","Broadband of any type",NA,0,0
+"1015","B28002","5","B28002_005","Cellular data plan",NA,0,0
+"1016","B28002","6","B28002_006","Cellular data plan with no other type of Internet subscription",NA,0,0
+"1017","B28002","7","B28002_007","Broadband such as cable, fiber optic or DSL",NA,0,0
+"1018","B28002","8","B28002_008","Broadband such as cable, fiber optic or DSL with no other type of Internet subscription",NA,0,0
+"1019","B28002","9","B28002_009","Satellite Internet service",NA,0,0
+"1020","B28002","10","B28002_010","Satellite Internet service with no other type of Internet subscription",NA,0,0
+"1021","B28002","11","B28002_011","Other service with no other type of Internet subscription",NA,0,0
+"1022","B28002","12","B28002_012","Internet access without a subscription",NA,0,0
+"1023","B28002","13","B28002_013","No Internet access",NA,0,0
+"1024","B28005",NA,NA,"AGE BY PRESENCE OF A COMPUTER AND TYPES OF INTERNET SUBSCRIPTION IN HOUSEHOLD","1,5",0,0
+"1025","B28005",NA,NA,"Universe:  Population in Households",NA,0,0
+"1026","B28005","1","B28005_001","Total:",NA,0,0
+"1027","B28005","2","B28005_002","Under 18 years:",NA,0,0
+"1028","B28005","3","B28005_003","Has a computer:",NA,0,0
+"1029","B28005","4","B28005_004","With dial-up Internet subscription alone",NA,0,0
+"1030","B28005","5","B28005_005","With a broadband Internet subscription",NA,0,0
+"1031","B28005","6","B28005_006","Without an Internet subscription",NA,0,0
+"1032","B28005","7","B28005_007","No computer",NA,0,0
+"1033","B28005","8","B28005_008","18 to 64 years:",NA,0,0
+"1034","B28005","9","B28005_009","Has a computer:",NA,0,0
+"1035","B28005","10","B28005_010","With dial-up Internet subscription alone",NA,0,0
+"1036","B28005","11","B28005_011","With a broadband Internet subscription",NA,0,0
+"1037","B28005","12","B28005_012","Without an Internet subscription",NA,0,0
+"1038","B28005","13","B28005_013","No computer",NA,0,0
+"1039","B28005","14","B28005_014","65 years and over:",NA,0,0
+"1040","B28005","15","B28005_015","Has a computer:",NA,0,0
+"1041","B28005","16","B28005_016","With dial-up Internet subscription alone",NA,0,0
+"1042","B28005","17","B28005_017","With a broadband Internet subscription",NA,0,0
+"1043","B28005","18","B28005_018","Without an Internet subscription",NA,0,0
+"1044","B28005","19","B28005_019","No computer",NA,0,0
+"1045","B28010",NA,NA,"COMPUTERS IN HOUSEHOLD","1,5",0,0
+"1046","B28010",NA,NA,"Universe:  Households",NA,0,0
+"1047","B28010","1","B28010_001","Total:",NA,0,0
+"1048","B28010","2","B28010_002","Has one or more types of computing devices:",NA,0,0
+"1049","B28010","3","B28010_003","Desktop or laptop",NA,0,0
+"1050","B28010","4","B28010_004","Desktop or laptop alone",NA,0,0
+"1051","B28010","5","B28010_005","Smartphone, tablet or other portable wireless computer or other computer",NA,0,0
+"1052","B28010","6","B28010_006","Smartphone, tablet or other portable wireless computer or other computer, no desktop or laptop",NA,0,0
+"1053","B28010","7","B28010_007","No Computer",NA,0,0
+"1054","B28011",NA,NA,"INTERNET SUBSCRIPTIONS IN HOUSEHOLD","1,5",0,0
+"1055","B28011",NA,NA,"Universe:  Households",NA,0,0
+"1056","B28011","1","B28011_001","Total:",NA,0,0
+"1057","B28011","2","B28011_002","With an Internet subscription",NA,0,0
+"1058","B28011","3","B28011_003","Dial-up alone",NA,0,0
+"1059","B28011","4","B28011_004","Broadband such as cable, fiber optic, or DSL",NA,0,0
+"1060","B28011","5","B28011_005","Satellite Internet service",NA,0,0
+"1061","B28011","6","B28011_006","Other service",NA,0,0
+"1062","B28011","7","B28011_007","Internet access without a subscription",NA,0,0
+"1063","B28011","8","B28011_008","No Internet access",NA,0,0
