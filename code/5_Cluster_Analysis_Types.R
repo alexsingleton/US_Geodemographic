@@ -46,8 +46,6 @@ usa.bg %<>%
 
 ################################################################################################
 # Cluster Analysis
-#
-# This code creates initial 250 clusters
 #################################################################################################
 
 #Box Cox of input
@@ -74,6 +72,8 @@ usa.bg.transform <- usa.bg %>%
 
 
 
+
+
 #EXTRACT COMPLETE CASES (all GEOID checked and present in boundary data)
 usa.bg.cc <- usa.bg.transform[complete.cases(usa.bg.transform), ]
 
@@ -95,14 +95,14 @@ aa_h20 <- as.h2o(usa.bg.cc)
 
 # H2O test
 
-results <- h2o.kmeans(training_frame = aa_h20, k = 10, x = v_used, init = "Random",max_iterations=1,standardize = FALSE)
+results <- h2o.kmeans(training_frame = aa_h20, k = 7, x = v_used, init = "Random",max_iterations=1,standardize = FALSE)
 wss <- h2o.tot_withinss(results)
 
 ptm <- proc.time()
 
 for(i in 1:1000) {
  
-results_run <- h2o.kmeans(training_frame = aa_h20, k = 10, x = v_used, init = "Random",max_iterations=1000,standardize = FALSE)
+results_run <- h2o.kmeans(training_frame = aa_h20, k = 7, x = v_used, init = "Random",max_iterations=1000,standardize = FALSE)
 wss_run <- h2o.tot_withinss(results_run)
 
 if(wss_run < wss) {
@@ -117,8 +117,8 @@ print(i)
 proc.time() - ptm
 
 
-# Save all results from 1k run (92.2 hours)
-saveRDS(results,"./data/results_10k_10C_Logit_tract.rds")
+# Save all results from 10k run ( hours)
+saveRDS(results,"./data/results_10k_7C_Logit_tract.rds")
 
 
 # Pick the best result
@@ -253,13 +253,6 @@ UnK_Clusters <- usa.bg.ic %>%
 
 
 
-
-
-# Append cluster aggregates and create final lookup
-# usa.bg.cl %<>%
-#   #bind_rows(mins) %>%
-# left_join(ward.cuts)
-
 # Append missing and unknown clusters
 usa.bg.cl %<>%
 bind_rows(mins) %>%
@@ -267,7 +260,18 @@ bind_rows(UnK_Clusters)
 
 #Export clusters
 
-write_csv(usa.bg.cl,"Clusters_K_10_BG_Logit.csv")
-write_parquet(usa.bg.cl, "Clusters_K_10_BG_Logit.parquet")
+write_csv(usa.bg.cl,"Clusters_K_7_BG_Logit.csv")
+write_parquet(usa.bg.cl, "Clusters_K_7_BG_Logit.parquet")
+
+
+
+
+
+
+
+
+
+
+
 
 

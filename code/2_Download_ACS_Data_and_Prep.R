@@ -60,7 +60,10 @@ codes <- unique(c(denom,nopct,numer))#Unique is needed to remove the denominator
 ################
 
 # Set the Census API key and retrieve country codes
-census_api_key("28623dc12367621593ec9f56deeb0c495644e8f0")
+#census_api_key("28623dc12367621593ec9f56deeb0c495644e8f0")
+
+census_api_key("20eb1998096c4eb405a63ebc23033e2cbc0df8b5")
+
 
 #readRenviron("~/.Renviron")
 us <- unique(fips_codes$state)[1:51]
@@ -76,7 +79,7 @@ ptm <- proc.time()
 foreach(i = 1:length(us),.packages=c('purrr','dplyr','tidycensus')) %dopar%{
   
   d<-get_acs(geography = "block group", variables = codes, 
-             state = us[i], year = 2019,geometry = FALSE)
+             state = us[i], year = 2020,geometry = FALSE)
   
   saveRDS(d,paste0("data/storage_tmp/",us[i],".rds"))
   rm(d)
@@ -97,6 +100,10 @@ DF %<>%
   pivot_wider(names_from = variable,values_from = estimate)
 
 saveRDS(DF,"./data/data_BG_1.5.rds")
+
+
+
+
 
 
 
@@ -210,6 +217,6 @@ BG_SF %<>%
 
 saveRDS(BG_SF,"./data/Block_Group_SF.rds")
 
-#st_write(BG_SF, "data/BG_SF.shp")
+#st_write(Block_Group_SF, "data/BG_SF.shp")
 
 
