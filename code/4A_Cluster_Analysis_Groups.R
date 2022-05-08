@@ -131,7 +131,10 @@ clusters <- as_tibble(h2o.predict(results,aa_h20))
 
 usa.bg.cl <- tibble(GEOID= ID$GEOID,cluster=(clusters$predict +1))
 
-saveRDS(usa.bg.cl,"./data/usa.bg.cl.rds")
+
+write_parquet(usa.bg.cl, "./data/usa.bg.cl.group.parquet")
+
+
 
 
 
