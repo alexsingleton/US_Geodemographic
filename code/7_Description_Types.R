@@ -46,7 +46,7 @@ group_by(Type) %>%
   summarise_all(sum,na.rm = TRUE) 
 
 
-
+T_n <- TYPE$Type
 
 # Convert to %
   
@@ -75,7 +75,12 @@ TYPE %<>%
   rownames_to_column(var = "UniqueID") %>%
   as_tibble(name_repair = "minimal") %>%
   left_join(vars_new, by="UniqueID") %>%
-  select(UniqueID,V1:V7,Stub,CONCEPT,DOMAIN)
+  select(UniqueID,V1:V39,Stub,CONCEPT,DOMAIN) %>%
+  rename_at(vars(V1:V39), ~ T_n)
+
+
+
+
 
 
 
