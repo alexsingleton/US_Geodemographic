@@ -11,6 +11,7 @@ white = "B03002_003",
 black = "B03002_004",
 asian = "B03002_006",
 hispanic = "B03002_012",
+Age_0_5_years_M = "B01001_003",
 Age_5_to_9_years_M = "B01001_004",
 Age_10_to_14_years_M = "B01001_005",
 Age_15_to_17_years_M = "B01001_006",
@@ -126,7 +127,8 @@ saveRDS(DF,"./data/extra/extra_data.rds")
 
 usa.bg.cl <- read_parquet("./data/usa.bg.cl.type.parquet")
 
-
+usa.bg.cl %<>%
+  mutate(Group = substring(cluster,1,1))
 
 
 
@@ -199,8 +201,6 @@ rent_burden <- DF %>%
 
 
 
-
-
 ####Viz######
 ############
 
@@ -214,8 +214,120 @@ pop_plot <- population %>%
   mutate(variable = str_remove(variable,"Age ")) %>%
   mutate(variable = str_replace_all(variable,"_"," ")) %>%
   as_tibble()
-  
+
+
+pop_plot_cl <- pop_plot %>%
+  merge(usa.bg.cl)
+
+
+pop_plot2 <- pop_plot_cl %>% 
+    group_by(variable,SEX,cluster) %>% summarise_at(vars(estimate),list(sum = sum)) %>%
+    mutate(sum = sum/10000)#10,000s people
   
 
-ggplot(pop_plot, aes(x = estimate, y = variable, fill = SEX)) + 
-  geom_col()
+ggplot(pop_plot2, aes(x = sum, y = variable, fill = SEX)) + 
+geom_col() +
+facet_wrap(~ cluster ) +
+theme(axis.text=element_text(size=6))
+
+ggsave("pop_pyramid.pdf",units = "cm", width = 42 , height = 29.7) #Save A3 size
+
+
+#Segregation Plot
+    
+seg_plot_cl <- segregation %>%
+merge(usa.bg.cl)
+
+ggplot(seg_plot_cl, aes(x = cluster, y = ls, fill = Group)) +  # Change filling color
+  geom_boxplot(outlier.shape = NA)
+
+ggsave("segregation.pdf",units = "cm", width = 42 , height = 29.7) #Save A3 size
+    
+
+
+
+#Income Plot
+
+income_plot <- med_house_income %>%
+  merge(usa.bg.cl)
+
+ggplot(income_plot, aes(x = cluster, y = estimate, fill = Group)) +  # Change filling color
+  geom_boxplot(outlier.shape = NA)
+
+ggsave("income.pdf",units = "cm", width = 42 , height = 29.7) #Save A3 size
+
+
+
+#Rooms Plot
+
+rooms_plot <- med_rooms %>%
+  merge(usa.bg.cl) 
+
+#%>%
+#  filter(!is.na(estimate))
+
+ggplot(rooms_plot, aes(x = cluster, y = estimate, fill = Group)) +  # Change filling color
+  geom_boxplot(outlier.shape = NA)
+
+ggsave("rooms.pdf",units = "cm", width = 42 , height = 29.7) #Save A3 size
+
+
+
+
+
+
+#Home Value Plot
+
+home_value_plot <- med_home_value %>%
+  merge(usa.bg.cl) 
+
+
+ggplot(home_value_plot, aes(x = cluster, y = estimate, fill = Group)) +  # Change filling color
+  geom_boxplot(outlier.shape = NA)
+
+ggsave("home_value.pdf",units = "cm", width = 42 , height = 29.7) #Save A3 size
+
+
+
+
+
+#Rent Burden Plot
+
+rent_burden_plot <- rent_burden %>%
+  merge(usa.bg.cl) 
+
+
+ggplot(rent_burden_plot, aes(x = cluster, y = estimate, fill = Group)) +  # Change filling color
+  geom_boxplot(outlier.shape = NA)
+
+ggsave("rent_burden.pdf",units = "cm", width = 42 , height = 29.7) #Save A3 size
+
+
+
+#Density Plot
+
+density_plot_cl <- density %>%
+  merge(usa.bg.cl)
+
+ggplot(density_plot_cl, aes(x = cluster, y = pop_density, fill = Group)) +  # Change filling color
+  ylim(0,80000) +
+  geom_boxplot(outlier.shape = NA)
+
+ggsave("density.pdf",units = "cm", width = 42 , height = 29.7) #Save A3 size
+
+
+
+#House Age
+
+
+house_age_plot_cl <- house_age %>%
+  merge(usa.bg.cl)
+
+ggplot(house_age_plot_cl, aes(x = cluster, y = median_structure_age, fill = Group)) +  # Change filling color
+  geom_boxplot(outlier.shape = NA)
+
+ggsave("house_age.pdf",units = "cm", width = 42 , height = 29.7) #Save A3 size
+
+
+
+
