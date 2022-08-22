@@ -1,5 +1,7 @@
 
 #Summary Statistics
+
+
 variables_to_get <- c(
 med_home_value = "B25077_001",
 med_rooms = "B25018_001",
@@ -9,7 +11,10 @@ med_year_built = "B25037_001",
 rent_burden = "B25071_001",
 white = "B03002_003",
 black = "B03002_004",
+american_indian_alaska_native = "B03002_005",
 asian = "B03002_006",
+native_hawaiian_pacific_islander = "B03002_007",
+other_race = "B03002_008",
 hispanic = "B03002_012",
 Age_0_5_years_M = "B01001_003",
 Age_5_to_9_years_M = "B01001_004",
@@ -56,13 +61,18 @@ Age_67_to_69_years_F = "B01001_045",
 Age_70_to_74_years_F = "B01001_046",
 Age_75_to_79_years_F = "B01001_047",
 Age_80_to_84_years_F = "B01001_048",
-Age_85_years_and_over_F = "B01001_049")
+Age_85_years_and_over_F = "B01001_049",
+income_below_poverty_line = "B17010_002",
+income_below_poverty_line_maried_U18 = "B17010_004",
+income_below_poverty_line_not_maried_M_U18 = "B17010_011",
+income_below_poverty_line_not_maried_F_U18 = "B17010_017",
+aged_25_plus = "B15003_001",
+Bachelor_degree = "B15003_022",
+Master_degree = "B15003_023",
+Professional_degree = "B15003_024",
+Doctorate_degree = "B15003_025")
 
 
-#B03002_005: Native American alone (Not Hispanic or Latino)
-#B03002_006: Asian alone (Not Hispanic or Latino)
-#B03002_007: Native Hawaiian or Pacific Islander alone (Not Hispanic or Latino)
-#B03002_009: Multiple Races (Not Hispanic or Latino)
 
 
 
@@ -167,13 +177,18 @@ house_age <- DF %>%
 library(segregation)
 segregation <- DF %>%
   select(GEOID,variable,estimate) %>%
-  filter(variable %in% c('white','black','asian','hispanic')) %>%
+  filter(variable %in% c('white','black','american_indian_alaska_native','asian','native_hawaiian_pacific_islander','other_race','hispanic')) %>%
   mutual_local( # Computes Mutual Information Index (M) decomposed by block groups (ls)
     group = "variable",
     unit = "GEOID",
     weight = "estimate", 
     wide = TRUE
   )
+
+
+
+
+
 
 #Age
 population <- DF %>%

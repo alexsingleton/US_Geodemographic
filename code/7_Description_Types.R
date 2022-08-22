@@ -87,6 +87,17 @@ TYPE %<>%
 write_csv(TYPE,"Grand_Index_Clusters_TYPES_BG_Logit.csv")
 
 
+
+
+# Variables within Types with greatest and lowest propensity
+
+
+
+
+
+
+
+
 ############################ Map ##################
 
 Block_Group_SF <- readRDS("./data/Block_Group_SF.rds")
