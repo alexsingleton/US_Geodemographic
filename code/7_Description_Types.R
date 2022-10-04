@@ -19,6 +19,8 @@ library(summarytools)
 library(cluster)
 library(caret)
 library(e1071)
+library(arrow)
+library(janitor)
 
 
 #Get Source Data
@@ -76,12 +78,8 @@ TYPE %<>%
   as_tibble(name_repair = "minimal") %>%
   left_join(vars_new, by="UniqueID") %>%
   select(UniqueID,V1:V39,Stub,CONCEPT,DOMAIN) %>%
-  rename_at(vars(V1:V39), ~ T_n)
-
-
-
-
-
+  rename_at(vars(V1:V39), ~ T_n) %>%
+  clean_names()
 
 
 write_csv(TYPE,"Grand_Index_Clusters_TYPES_BG_Logit.csv")
@@ -89,8 +87,19 @@ write_csv(TYPE,"Grand_Index_Clusters_TYPES_BG_Logit.csv")
 
 
 
-# Variables within Types with greatest and lowest propensity
+# Variables by Types with greatest propensity
 
+c_n <- colnames(TYPE)[2:40]
+
+for (i in 1:length(c_n)) {
+
+TYPE %>%
+  select(!!as.name(c_n[i]),unique_id,stub) %>%
+  slice_max(!!as.name(c_n[i]), n = 10) %>%
+  mutate(cluster = paste0(c_n[i])) %>%
+  write_csv("top_index.csv",append = TRUE)
+
+}
 
 
 
