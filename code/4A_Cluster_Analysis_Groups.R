@@ -82,8 +82,8 @@ usa.bg.cc <- usa.bg.transform[complete.cases(usa.bg.transform), ]
 usa.bg.ic <- usa.bg.transform[!complete.cases(usa.bg.transform), ]
 
 # Write Parquet File (input data)
-write_parquet(usa.bg.cc, "usa.bg.cc.parquet")
-write_parquet(usa.bg.ic, "usa.bg.ic.parquet")
+write_parquet(usa.bg.cc, "data/usa.bg.cc.parquet")
+write_parquet(usa.bg.ic, "data/usa.bg.ic.parquet")
 
 
 #### Clustering
