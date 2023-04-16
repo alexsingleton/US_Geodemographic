@@ -7,7 +7,7 @@ library(tigris)
 library(ggplot2)
 library(sf)
 
-
+setwd("~/GitHub/")
 
 usa.bg <- readRDS("./data/All_data_1.5.rds")
 vars_new <- readRDS("./data/vars_new_1.5.rds")
@@ -17,6 +17,7 @@ usa.bg.ic <- arrow::read_parquet("data/usa.bg.ic.parquet")
 
 clusters <- arrow::read_parquet("data/usa.bg.cl.type.parquet")
 
+Index_Scores_Groups <- read_csv("Grand_Index_Clusters_K_7_BG_Logit.csv")
 
 #Create Cluster Codes
 clusters %<>%
@@ -30,10 +31,10 @@ clusters %<>%
 # Create Colour Codes - Groups
 
 
-Colours_Group <- tibble(
-  group = c("A","B","C","D","E","F","G",NA),
-  g_col = c("#2E8B57", "#FFA07A","#4682B4","#9370DB","#FFD700","#eb5252","#8bb92d","#DCDCDC")
-)
+# Colours_Group <- tibble(
+#   group = c("A","B","C","D","E","F","G",NA),
+#   g_col = c("#2E8B57", "#FFA07A","#4682B4","#9370DB","#FFD700","#eb5252","#8bb92d","#DCDCDC")
+# )
 
 
 
@@ -60,23 +61,29 @@ c("#4CAF80","#5CCD8B","#7EDD9C","#A2EDB4","#C4F4CB",
 
 ###############################################################################
 
+# 
+# #heat maps
+# 
+# 
+# 
+# Index_Scores_Groups %<>% 
+#    rename_with(~LETTERS[1:7], 2:8)
+# 
+# 
+# 
+# Index_Scores_Groups_l <- reshape2::melt(Index_Scores_Groups)
+# 
+# 
+# long <- Index_Scores_Groups_l %>%
+# filter(grepl("B19001", UniqueID))
+#   
+# long$Stub <- factor(long$Stub, levels = unique(long$Stub))
+# 
 
-setwd("~/GitHub/")
-
-Index_Scores_Groups <- read_csv("Grand_Index_Clusters_K_7_BG_Logit.csv")
-
-Index_Scores_Groups %<>% 
-   rename_with(~LETTERS[1:7], 2:8)
 
 
 
-Index_Scores_Groups_l <- reshape2::melt(Index_Scores_Groups)
 
-
-long <- Index_Scores_Groups_l %>%
-filter(grepl("B19001", UniqueID))
-  
-long$Stub <- factor(long$Stub, levels = unique(long$Stub))
 
 
 
@@ -93,14 +100,12 @@ long$Stub <- factor(long$Stub, levels = unique(long$Stub))
  
  #Boulder
  Boulder <- block_groups(state = "CO",county = "Boulder",  cb = TRUE)
- 
  Boulder %<>%
    select(GEOID) %>%
    erase_water()
  
  #Seattle 
  Seattle   <- block_groups(state = "WA",county = c("King","Pierce","Snohomish"),  cb = TRUE)
-
  Seattle  %<>%
    select(GEOID) %>%
    erase_water()
@@ -122,19 +127,75 @@ long$Stub <- factor(long$Stub, levels = unique(long$Stub))
    filter(NAME %in% c("New York","Bronx","Kings","Queens","Richmond")) %>%
    erase_water()
  
- 
- 
  ggplot() +
-   geom_sf(data = NYC, aes(fill = group),color = "#f8f8f8") +
+   geom_sf(data = NYC, aes(fill = group),color = NA) +
    geom_sf(data = NYC_Counties, fill = NA, color = "black")+
    scale_fill_manual(values = group_palette,drop = FALSE,name = "Group") +
    theme_void() 
  
  
+ ggsave("maps/NYC.pdf")
  
+ #Boulder Map
+ 
+ 
+ Boulder %<>%
+   left_join(clusters,by = "GEOID")
+ 
+ Boulder <- Boulder %>%
+   mutate(group = factor(group, levels = c("A","B","C","D","E","F","G",NA), ordered = TRUE)) %>%
+   mutate(group = replace_na(as.character(group), "Unclassified"))
+ 
+Boulder_Counties <-  counties(state = "CO",  cb = TRUE) %>%
+   filter(NAME %in% c("Boulder")) %>%
+   erase_water()
+ 
+
+ ggplot() +
+   geom_sf(data = Boulder, aes(fill = group),color = NA) +
+   scale_fill_manual(values = group_palette,drop = FALSE,name = "Group") +
+   geom_sf(data = Boulder_Counties, fill = NA, color = "black")+
+   theme_void() 
+ 
+ 
+ ggsave("maps/Boulder.pdf",width = 9)
    
-   
-   
+ #Seattle Map
+ 
+ 
+ Seattle %<>%
+   left_join(clusters,by = "GEOID")
+ 
+ Seattle <- Seattle %>%
+   mutate(group = factor(group, levels = c("A","B","C","D","E","F","G",NA), ordered = TRUE)) %>%
+   mutate(group = replace_na(as.character(group), "Unclassified"))
+ 
+ Seattle_Counties <-  counties(state = "WA",  cb = TRUE) %>%
+   filter(NAME %in% c("King","Pierce","Snohomish")) %>%
+   erase_water()
+ 
+ 
+ ggplot() +
+   geom_sf(data = Seattle, aes(fill = group),color = NA) +
+   scale_fill_manual(values = group_palette,drop = FALSE,name = "Group") +
+   geom_sf(data = Seattle_Counties, fill = NA, color = "black")+
+   theme_void() 
+ 
+ 
+ ggsave("maps/Seattle.pdf")
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  
@@ -146,8 +207,6 @@ long$Stub <- factor(long$Stub, levels = unique(long$Stub))
  
 write_csv(cluster_cnt,"Count_of_Clusters.csv") 
  
-
- # read the parquet file into a data frame
 
  
  
