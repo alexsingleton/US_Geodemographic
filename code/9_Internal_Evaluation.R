@@ -5,11 +5,11 @@ library(arrow)
 library(tigris)
 library(ggplot2)
 library(sf)
-library(viridis)
+#library(viridis)
 
-setwd("~/GitHub/")
+#setwd("~/GitHub/")
 
-usa.bg <- readRDS("./data/All_data_1.5.rds")
+usa.bg <- readRDS("./data/data_BG_1.5.rds")
 vars_new <- readRDS("./data/vars_new_1.5.rds")
 
 usa.bg.cc <- arrow::read_parquet("data/usa.bg.cc.parquet")
@@ -37,19 +37,28 @@ Type_Means <- Fit_Stat %>%
   summarise(across(everything(), mean))
 
 
-Fit_Stat %<>% 
-  group_split(type,.keep = TRUE)
+#Fit_Stat %<>% 
+#  group_split(!!sym("type"),.keep = TRUE)
 
 
 
 #Calculate error scores for Types
 
 
-tmp_ALL <- NA
+tmp_ALL <- data.frame()
+
+compute_dev_from_mean <- function(type_x: character) {
+  type_x_means <- Type_Means %>% filter(type == type_x)
+  type_x_data <- Fit_Stat %>% filter(type == type_x)
+  #compute the absolute difference between type_x data and means, ensure column names match in each
+  type_x_dev_from_mean <- abs(type_x_data[,2:203] - type_x_means[,2:203])
+  
+
+}
 
 for (x in 1:length(Fit_Stat)){
   
-  tmp_out <- NA
+  tmp_out <- data.frame()
   
   for (i in 1:nrow(Fit_Stat[[x]])){
     tmp <- Fit_Stat[[x]][i,2:203]
@@ -63,7 +72,6 @@ for (x in 1:length(Fit_Stat)){
   rm(tmp_out)
   
 }
-
 
 tmp_ALL <- tmp_ALL[-1,]
 tmp_ALL$SUM <- rowSums(tmp_ALL[,2:203])
