@@ -23,8 +23,6 @@ library(janitor)
 library(caret)
 library(e1071)
 
-
-
 All_data <- readRDS("./data/All_data_1.5.rds")
 data <- readRDS("./data/data_BG_1.5.rds")
 vars_new <- readRDS("./data/vars_new_1.5.rds")
@@ -32,8 +30,6 @@ vars_new <- readRDS("./data/vars_new_1.5.rds")
 # Add a state ID
 All_data %<>%
   mutate(state = str_sub(GEOID,1,2))
-
-
 
 
 ################################################################################################
@@ -86,18 +82,11 @@ graph_corr %>%
   geom_node_text(aes(label = name), size = 1, check_overlap =TRUE)
 
 
-
-
-
-
-
-
 ######################################
 # Summary of variable characteristics
 ######################################
 
-view(dfSummary(All_data,
-               graph.col = FALSE), file = "Summary_Inputs.html")
+#view(dfSummary(All_data, graph.col = FALSE), file = "Summary_Inputs.html")
 
 
 

@@ -60,12 +60,8 @@ codes <- unique(c(denom,nopct,numer))#Unique is needed to remove the denominator
 ################
 
 # Set the Census API key and retrieve country codes
-#census_api_key("28623dc12367621593ec9f56deeb0c495644e8f0")
+census_api_key("") # The API key provided to you from the Census formatted in quotes. A key can be acquired at http://api.census.gov/data/key_signup.html
 
-census_api_key("20eb1998096c4eb405a63ebc23033e2cbc0df8b5")
-
-
-#readRenviron("~/.Renviron")
 us <- unique(fips_codes$state)[1:51]
 
 # Setup parallel processing
@@ -189,8 +185,8 @@ All_data  %<>%
   bind_cols(DF[,"GEOID"])
 
 # Save the measures and description file
-saveRDS(All_data,"./data/All_data_1.5.rds")
-saveRDS(vars_new,"./data/vars_new_1.5.rds")
+saveRDS(All_data,"./data/All_data_1.5.rds") # Not stored in the repo as too large (https://pcwww.liv.ac.uk/~ucfnale/us_geodemographic_lfs/All_data_1.5.rds)
+saveRDS(vars_new,"./data/vars_new_1.5.rds") 
 
 
 
@@ -215,8 +211,7 @@ BG_SF <- map_df(state_codes, function(state_code) {
 BG_SF %<>%
   select(GEOID)
 
-saveRDS(BG_SF,"./data/Block_Group_SF.rds")
+saveRDS(BG_SF,"./data/Block_Group_SF.rds")  # Not stored in the repo as too large (https://pcwww.liv.ac.uk/~ucfnale/us_geodemographic_lfs/BG_SF.rds)
 
-#st_write(Block_Group_SF, "data/BG_SF.shp")
 
 

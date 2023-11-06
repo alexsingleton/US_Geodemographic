@@ -108,7 +108,7 @@ acs_variables_initial <- acs_variables %>%
   filter(`Table ID` %in% all_tables) %>%
   mutate(Orig_Table = ifelse(`Table ID` %in% original_tables, 1, 0), Orig_Var = ifelse(UniqueID %in% vars$code, 1, 0))
 
-write.csv(acs_variables_initial,"acs_variables_initial.csv") # These were used to explore the variables, manually examine duplicates and select initial variables for evaluation
+write.csv(acs_variables_initial,"./data/acs_variables_initial.csv") # These were used to explore the variables, manually examine duplicates and select initial variables for evaluation
 
 
 

@@ -82,7 +82,7 @@ TYPE %<>%
   clean_names()
 
 
-write_csv(TYPE,"Grand_Index_Clusters_TYPES_BG_Logit.csv")
+write_csv(TYPE,"./data/Grand_Index_Clusters_TYPES_BG_Logit.csv")
 
 
 
@@ -115,10 +115,6 @@ Block_Group_SF <- readRDS("./data/Block_Group_SF.rds")
 Block_Group_SF %<>%
   left_join(usa.bg.cl) %>%
   select(GEOID,Type)
-
-st_write(Block_Group_SF, "data/BG_TYPE_SF.shp")
-
-st_write(Block_Group_SF, "data/BG_TYPE_SF.gpkg")
 
 
 
@@ -162,12 +158,8 @@ codes <- unique(c(denom,nopct,numer))#Unique is needed to remove the denominator
 ################
 
 # Set the Census API key and retrieve country codes
-#census_api_key("28623dc12367621593ec9f56deeb0c495644e8f0")
+census_api_key("") # The API key provided to you from the Census formatted in quotes. A key can be acquired at http://api.census.gov/data/key_signup.html
 
-census_api_key("20eb1998096c4eb405a63ebc23033e2cbc0df8b5")
-
-
-#readRenviron("~/.Renviron")
 us <- unique(fips_codes$state)[1:51]
 
 # Setup parallel processing
@@ -198,22 +190,10 @@ DF <- list.files(path = "./data/storage_tmp/", pattern = ".rds", full.names = TR
 proc.time() - ptm
 
 
-DF %<>%
+data <- DF %<>%
   select(-NAME,-moe) %>%
   pivot_wider(names_from = variable,values_from = estimate)
 
-saveRDS(DF,"./data/data_BG_1.5_fuller.rds")
-
-
-
-################################################
-
-
-
-#Get Source Data
-data <- readRDS("./data/data_BG_1.5_fuller.rds")
-
-usa.bg.cl <- read_parquet("./data/usa.bg.cl.type.parquet")
 
 vars_new <-  read_csv("data/acs_variables_initial_1.5_expanded_index_scores.csv")[-1]
 
@@ -255,7 +235,6 @@ TYPE %<>%
   select(-TotPop)
 
 
-
 #Create Output
 
 TYPE %<>%
@@ -270,9 +249,3 @@ TYPE %<>%
 
 
 write_csv(TYPE,"Grand_Index_Clusters_TYPES_BG_Logit_expanded.csv")
-
-
-
-
-
-
