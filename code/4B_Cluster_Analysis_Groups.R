@@ -70,7 +70,7 @@ usa.bg.cc <- usa.bg.transform[complete.cases(usa.bg.transform), ]
 usa.bg.ic <- usa.bg.transform[!complete.cases(usa.bg.transform), ]
 
 # Write Parquet File (input data)
-write_parquet(usa.bg.cc, "data/usa.bg.cc.parquet")
+# write_parquet(usa.bg.cc, "data/usa.bg.cc.parquet") # Not stored in the repo as too large (https://pcwww.liv.ac.uk/~ucfnale/us_geodemographic_lfs/usa.bg.cc.parquet)
 write_parquet(usa.bg.ic, "data/usa.bg.ic.parquet")
 
 

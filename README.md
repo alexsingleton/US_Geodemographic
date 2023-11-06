@@ -37,3 +37,9 @@ The code is organised into a series of numbered files, which should be run in or
 * [7_Description_Types.R](/code/7_Description_Types.R) - This file creates the descriptions for the Type level of the classification.
 * [8_Map_Classification.R](/code/8_Map_Classification.R) - This file creates the maps for the classification.
 * [9_Prompt_Engineering.R](/code/9_Prompt_Engineering.R) - This file creates the prompts that were fed in GPT4 to create descriptions for the classification.
+
+## Classification Outputs
+
+If you want to simply view the classification; you can download a lookup [here](/data/outputs/lookup.csv); or geopackage [here](https://pcwww.liv.ac.uk/~ucfnale/us_geodemographic_lfs/BG_SF.gpkg). If you are interested in the labels and descriptions, these can be found [here](/data/outputs/Names_Descriptions_Groups_Types.pdf).
+
+ # Not stored in the repo as too large (vvusa.bg.cc.parquet)

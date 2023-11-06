@@ -246,6 +246,3 @@ TYPE %<>%
   select(UniqueID,V1:V39,Stub,CONCEPT,DOMAIN) %>%
   rename_at(vars(V1:V39), ~ T_n) %>%
   clean_names()
-
-
-write_csv(TYPE,"Grand_Index_Clusters_TYPES_BG_Logit_expanded.csv")
