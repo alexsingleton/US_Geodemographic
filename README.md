@@ -26,7 +26,7 @@ The repo is organised into a series of folders and files:
 
 The code is organised into a series of numbered files, which should be run in order. The code is also commented to explain what each section does. The numbered files are:
 
-* 1_Initial_Variable_Selection.R - This file selects the variables to be used in the classification. It also creates a series of lookups for the variables, including the variable names, descriptions and the source of the data.
+* [1_Initial_Variable_Selection.R](/code/1_Initial_Variable_Selection.R) - This file selects the variables to be used in the classification. It also creates a series of lookups for the variables, including the variable names, descriptions and the source of the data.
 * 2_Download_ACS_Data_and_Prep.R - This file downloads the ACS data from the Census API and prepares it for use in the classification.
 * 3_Correlation_Final_Variable_Selection.R - This file selects the final variables to be used in the classification, based on correlation and other exploratory analysis.
 * 4A_Clustergram_Groups.ipynb - This file creates the clustergram for the Group level of the classification. This uses the Python package [clustergram](https://github.com/martinfleis/clustergram).
