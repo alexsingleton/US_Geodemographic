@@ -1,6 +1,6 @@
 # US Geodemographic Classification
 
-# Introduction / Aim
+# Introduction
 
 This repo presents the code used to build a new geodmeographic classification for the US, following previous work within this geographic [context](https://github.com/geoss/acs_demographic_clusters/) and [published paper](https://doi.org/10.1080/00045608.2015.1052335).
 
@@ -41,5 +41,3 @@ The code is organised into a series of numbered files, which should be run in or
 ## Classification Outputs
 
 If you want to simply view the classification; you can download a lookup [here](/data/outputs/lookup.csv); or geopackage [here](https://pcwww.liv.ac.uk/~ucfnale/us_geodemographic_lfs/BG_SF.gpkg). If you are interested in the labels and descriptions, these can be found [here](/data/outputs/Names_Descriptions_Groups_Types.pdf).
-
- # Not stored in the repo as too large (vvusa.bg.cc.parquet)
