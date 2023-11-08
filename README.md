@@ -1,8 +1,10 @@
 # US Geodemographic Classification
 
+Classification is stored in two parquet file, each has a column which stores the US Census Bureau's block group Identifier and a column that syores the [group](data/usa.bg.cl.group.parquet) and [type](data/usa.bg.cl.type.parquet) levels of the classification
+
 # Introduction
 
-This repo presents the code used to build a new geodmeographic classification for the US, following previous work within this geographic [context](https://github.com/geoss/acs_demographic_clusters/) and [published paper](https://doi.org/10.1080/00045608.2015.1052335).
+This repo presents the code used to build a new geodmeographic classification for the US, following previous work within this geographic [context](https://github.com/geoss/acs_demographic_clusters/) and [published paper](https://doi.org/10.1080/00045608.2015.1052335). 
 
 # Structure of the Repository
 
