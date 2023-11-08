@@ -1,6 +1,6 @@
 # US Geodemographic Classification
 
-The classification is stored in two parquet files, each has a column which stores the US Census Bureau's block group Identifier and a column that stores the [group](data/usa.bg.cl.group.parquet) and [type](data/usa.bg.cl.type.parquet) levels of the classification.  For mapping purposes this file file has to be joined to [a boundary file containing the 2020 US Census Block Group outlines](https://www.census.gov/cgi-bin/geo/shapefiles/index.php).
+The classification is stored in two parquet files, each has a column which stores the US Census Bureau's block group Identifier and a column that stores the [group](data/usa.bg.cl.group.parquet) and [type](data/usa.bg.cl.type.parquet) levels of the classification.  For mapping purposes this file  has to be joined to [a boundary file containing the 2020 US Census Block Group outlines](https://www.census.gov/cgi-bin/geo/shapefiles/index.php).
 
 # Introduction
 
